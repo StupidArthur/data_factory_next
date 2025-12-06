@@ -1,0 +1,80 @@
+2025-12-05 11:15:14,323 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:24,254 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:24,254 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:15:24,254 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:24,271 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:33,027 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:33,029 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:15:33,029 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:33,029 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:52,530 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:52,530 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:15:52,531 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:52,531 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:04,756 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:04,756 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:04,757 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:04,757 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:15,024 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:15,024 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:15,025 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:15,026 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:23,405 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:23,405 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:23,405 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:23,406 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:34,395 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:34,396 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:34,396 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:34,400 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 11:17:13,684 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:17:13,685 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:17:13,685 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:17:13,688 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 11:26:09,193 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:26:09,194 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:26:09,194 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:26:09,206 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:29:28,424 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:29:28,424 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:29:28,424 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:29:28,427 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:29:37,099 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:29:37,099 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:29:37,099 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:29:37,111 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:36:21,841 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:36:21,842 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:36:48,977 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:40:35,272 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:40:35,272 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:40:35,272 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:40:35,275 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:45:56,488 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:45:56,488 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:45:56,489 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:45:56,493 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:48:52,573 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:48:52,573 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:48:52,573 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:48:52,578 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:49:28,308 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:49:28,309 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 20:49:28,309 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:49:28,314 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 21:18:37,988 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:18:37,988 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:18:37,988 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:18:38,157 - INFO - Clock stopped: cycle_count=1000, sim_time=500.000
+2025-12-05 21:18:44,287 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:18:44,288 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:18:44,288 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:18:56,775 - INFO - Clock stopped: cycle_count=93824, sim_time=46912.000
+2025-12-05 21:19:01,230 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:19:01,230 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:19:01,230 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:19:02,592 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-05 21:19:17,713 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:19:17,713 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:19:17,713 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:19:18,981 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000

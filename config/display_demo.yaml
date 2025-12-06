@@ -1,0 +1,33 @@
+program:
+  - name: sin1
+    type: SIN
+    init_args:
+      amplitude: 100.0
+      period: 1200
+      phase: 0.0
+    expression: sin1.execute()
+  - name: valve1
+    type: VALVE
+    init_args:
+      min_opening: 0.0
+      max_opening: 100.0
+      step: 0.1
+      full_travel_time: 10.0
+    expression: valve1.execute(target_opening=sin1.out)
+  - name: non_sense_1
+    type: RANDOM
+    init_args:
+      L: 0.0
+      H: 100.0
+      max_step: 3.0
+    expression: non_sense_1.execute()
+  - name: non_sense_2
+    type: RANDOM
+    init_args:
+      L: 0.0
+      H: 100.0
+      max_step: 3.0
+    expression: non_sense_2.execute()
+  - name: non_sense_3
+    type: Variable
+    expression: non_sense_3 = non_sense_1[-30] + 2 * sqrt(non_sense_2)

@@ -1,0 +1,80 @@
+2025-12-05 11:15:14,323 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:24,254 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:24,254 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:15:24,254 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:24,271 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:33,027 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:33,029 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:15:33,029 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:33,029 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:52,530 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:15:52,530 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:15:52,531 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:15:52,531 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:04,756 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:04,756 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:04,757 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:04,757 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:15,024 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:15,024 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:15,025 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:15,026 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:23,405 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:23,405 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:23,405 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:23,406 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:34,395 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:16:34,396 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:16:34,396 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:16:34,400 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 11:17:13,684 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:17:13,685 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:17:13,685 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:17:13,688 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 11:26:09,193 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 11:26:09,194 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 11:26:09,194 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 11:26:09,206 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:29:28,424 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:29:28,424 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:29:28,424 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:29:28,427 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:29:37,099 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:29:37,099 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:29:37,099 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:29:37,111 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:36:21,841 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:36:21,842 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:36:48,977 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:40:35,272 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:40:35,272 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:40:35,272 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:40:35,275 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:45:56,488 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:45:56,488 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:45:56,489 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:45:56,493 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:48:52,573 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:48:52,573 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
+2025-12-05 20:48:52,573 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:48:52,578 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 20:49:28,308 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 20:49:28,309 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 20:49:28,309 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 20:49:28,314 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-05 21:18:37,988 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:18:37,988 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:18:37,988 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:18:38,157 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=1000, sim_time=500.000
+2025-12-05 21:18:44,287 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:18:44,288 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:18:44,288 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:18:56,775 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=93824, sim_time=46912.000
+2025-12-05 21:19:01,230 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:19:01,230 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:19:01,230 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:19:02,592 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-05 21:19:17,713 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-05 21:19:17,713 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-05 21:19:17,713 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-05 21:19:18,981 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000

@@ -2,6 +2,13 @@
 快速测试历史数据存储功能（不 sleep）
 """
 
+import sys
+import pathlib
+
+# 添加项目根目录到路径
+project_root = pathlib.Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 import programs  # noqa: F401
 import functions  # noqa: F401
 
@@ -18,7 +25,8 @@ def test_storage_quick():
     
     # 1. 解析配置文件
     parser = DSLParser()
-    config = parser.parse_file("config/display_demo.yaml")
+    config_path = project_root / "config" / "display_demo.yaml"
+    config = parser.parse_file(config_path)
     print("[OK] 配置文件解析成功")
     
     # 2. 创建引擎
@@ -26,7 +34,7 @@ def test_storage_quick():
     print("[OK] 引擎创建成功")
     
     # 3. 启用历史数据存储
-    history_config = HistoryConfig(db_path="test_quick_history.duckdb")
+    history_config = HistoryConfig(db_path=str(project_root / "tests" / "test_quick_history.duckdb"))
     engine.enable_history_storage(history_config)
     print("[OK] 历史数据存储已启用")
     

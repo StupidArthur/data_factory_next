@@ -182,6 +182,12 @@ data_factory_next/
 │   └── ...
 ├── utils/                  # 工具模块
 │   └── logger.py           # 日志管理
+├── tests/                  # 测试模块
+│   ├── test_dsl.py         # DSL 解析测试
+│   ├── test_data_manager.py # 数据管理测试
+│   ├── test_storage_quick.py # 快速存储测试
+│   ├── test_history_storage_detailed.py # 历史存储详细测试
+│   └── test_opcua_server.py # OPCUA Server 测试
 └── doc/                    # 项目文档
     ├── 设计文档.md
     ├── 用户手册.md

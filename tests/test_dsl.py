@@ -7,16 +7,16 @@ DSL 测试脚本
 import pathlib
 import sys
 
-# 添加项目根目录到路径（data_next 的父目录）
+# 添加项目根目录到路径
 project_root = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from data_next.core.parser import DSLParser
-from data_next.core.engine import UnifiedEngine
+from core.parser import DSLParser
+from core.engine import UnifiedEngine
 
 # 导入程序和函数（触发注册）
-import data_next.programs  # noqa: F401
-import data_next.functions  # noqa: F401
+import programs  # noqa: F401
+import functions  # noqa: F401
 
 
 def test_dsl_demo1():
@@ -26,7 +26,7 @@ def test_dsl_demo1():
     print("=" * 60)
 
     # 1. 解析配置文件
-    config_path = pathlib.Path(__file__).parent / "config" / "dsl_demo1.yaml"
+    config_path = project_root / "config" / "dsl_demo1.yaml"
     print(f"\n1. 解析配置文件: {config_path}")
 
     parser = DSLParser()

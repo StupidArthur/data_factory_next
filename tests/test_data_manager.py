@@ -3,7 +3,12 @@
 """
 
 import sys
+import pathlib
 from datetime import datetime, timedelta
+
+# 添加项目根目录到路径
+project_root = pathlib.Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
 
 # 导入程序和函数（触发注册）
 import programs  # noqa: F401
@@ -36,7 +41,7 @@ def test_history_storage():
         from data_manager import HistoryStorage
         
         # 创建测试数据库
-        config = HistoryConfig(db_path="test_history.duckdb")
+        config = HistoryConfig(db_path=str(project_root / "tests" / "test_history.duckdb"))
         storage = HistoryStorage(config)
         print("[OK] HistoryStorage 初始化成功")
         
@@ -151,7 +156,8 @@ def test_engine_integration():
     try:
         # 解析配置文件
         parser = DSLParser()
-        config = parser.parse_file("config/display_demo.yaml")
+        config_path = project_root / "config" / "display_demo.yaml"
+        config = parser.parse_file(config_path)
         print("[OK] 配置文件解析成功")
         
         # 创建引擎
@@ -159,7 +165,7 @@ def test_engine_integration():
         print("[OK] 引擎创建成功")
         
         # 启用历史数据存储
-        history_config = HistoryConfig(db_path="test_engine_history.duckdb")
+        history_config = HistoryConfig(db_path=str(project_root / "tests" / "test_engine_history.duckdb"))
         engine.enable_history_storage(history_config)
         print("[OK] 历史数据存储已启用")
         
@@ -208,13 +214,14 @@ def test_realtime_execution():
     try:
         # 解析配置文件
         parser = DSLParser()
-        config = parser.parse_file("config/display_demo.yaml")
+        config_path = project_root / "config" / "display_demo.yaml"
+        config = parser.parse_file(config_path)
         
         # 创建引擎
         engine = UnifiedEngine.from_program_config(config)
         
         # 启用历史数据存储
-        history_config = HistoryConfig(db_path="test_realtime_history.duckdb")
+        history_config = HistoryConfig(db_path=str(project_root / "tests" / "test_realtime_history.duckdb"))
         engine.enable_history_storage(history_config)
         print("[OK] 历史数据存储已启用")
         

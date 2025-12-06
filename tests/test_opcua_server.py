@@ -2,9 +2,16 @@
 测试 OPCUA Server 模块
 """
 
+import sys
+import pathlib
 import time
 import json
 import redis
+
+# 添加项目根目录到路径
+project_root = pathlib.Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 from data_manager.opcua_server import OPCUAServer, OPCUAServerConfig
 
 def test_opcua_server():

@@ -262,3 +262,165 @@ _duckdb.ConnectionException: Connection Error: Connection already closed!
 2025-12-06 15:25:36,860 - data_next - DEBUG - history_storage.py:296 - Query history returned 100 records
 2025-12-06 15:25:36,863 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 5 parameters
 2025-12-06 15:25:36,922 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:14:51,083 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:14:51,084 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 2 expression nodes
+2025-12-06 16:14:51,084 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:14:51,084 - data_next - INFO - engine.py:310 - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
+2025-12-06 16:14:51,085 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:14:51,085 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-06 16:15:05,131 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:15:05,131 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 2 expression nodes
+2025-12-06 16:15:05,132 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:15:05,132 - data_next - INFO - engine.py:310 - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
+2025-12-06 16:15:05,132 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:15:05,133 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-06 16:15:15,478 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:15:15,478 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
+2025-12-06 16:15:15,780 - data_next - DEBUG - history_storage.py:217 - Flushed 3 records to database
+2025-12-06 16:15:15,782 - data_next - DEBUG - history_storage.py:296 - Query history returned 4 records
+2025-12-06 16:15:15,784 - data_next - DEBUG - history_storage.py:421 - Query sampled returned 4 records (from 4 timestamps)
+2025-12-06 16:15:15,787 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 3 parameters
+2025-12-06 16:15:15,856 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:15:15,862 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:15:15,862 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:15:15,862 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=2
+2025-12-06 16:15:15,862 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 16:15:15,864 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:15:15,864 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 16:15:15,864 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:15:15,875 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:15:15,875 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_engine_history.duckdb, stored_variables=all
+2025-12-06 16:15:15,875 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 16:15:15,876 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:15:15,876 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:15:15,876 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 16:15:15,876 - data_next - INFO - engine.py:310 - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
+2025-12-06 16:15:15,876 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:15:15,878 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10, sim_time=5.000
+2025-12-06 16:15:15,879 - data_next - DEBUG - history_storage.py:296 - Query history returned 0 records
+2025-12-06 16:15:15,883 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:15:15,883 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 16:15:15,883 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:15:15,894 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:15:15,894 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_realtime_history.duckdb, stored_variables=all
+2025-12-06 16:15:15,894 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 16:15:15,895 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:15:15,895 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:15:15,895 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 16:15:15,895 - data_next - INFO - engine.py:242 - 切换到 REALTIME 模式（实时运行）
+2025-12-06 16:15:15,895 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:15:16,396 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=5
+2025-12-06 16:15:16,897 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=2, params_count=5
+2025-12-06 16:15:17,397 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=3, params_count=5
+2025-12-06 16:15:17,898 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=4, params_count=5
+2025-12-06 16:15:18,399 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=5, params_count=5
+2025-12-06 16:15:18,399 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=5, sim_time=2.500
+2025-12-06 16:15:18,399 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 16:15:18,735 - data_next - DEBUG - history_storage.py:217 - Flushed 25 records to database
+2025-12-06 16:15:18,794 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:15:18,795 - data_next - ERROR - history_storage.py:299 - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 16:16:02,795 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:16:02,795 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_history.duckdb, stored_variables=all
+2025-12-06 16:16:03,111 - data_next - DEBUG - history_storage.py:217 - Flushed 3 records to database
+2025-12-06 16:16:03,112 - data_next - DEBUG - history_storage.py:296 - Query history returned 5 records
+2025-12-06 16:16:03,115 - data_next - DEBUG - history_storage.py:421 - Query sampled returned 5 records (from 5 timestamps)
+2025-12-06 16:16:03,117 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 3 parameters
+2025-12-06 16:16:03,171 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:16:03,177 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:16:03,177 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:16:03,178 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=2
+2025-12-06 16:16:03,178 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 16:16:03,180 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:16:03,180 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 16:16:03,180 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:16:03,190 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:16:03,190 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_engine_history.duckdb, stored_variables=all
+2025-12-06 16:16:03,190 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 16:16:03,192 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:16:03,192 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:16:03,192 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 16:16:03,192 - data_next - INFO - engine.py:310 - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
+2025-12-06 16:16:03,192 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:16:03,194 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10, sim_time=5.000
+2025-12-06 16:16:03,195 - data_next - DEBUG - history_storage.py:296 - Query history returned 0 records
+2025-12-06 16:16:03,198 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:16:03,198 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 16:16:03,198 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:16:03,209 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:16:03,209 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_realtime_history.duckdb, stored_variables=all
+2025-12-06 16:16:03,209 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 16:16:03,210 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:16:03,210 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:16:03,210 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 16:16:03,210 - data_next - INFO - engine.py:242 - 切换到 REALTIME 模式（实时运行）
+2025-12-06 16:16:03,210 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:16:03,712 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=5
+2025-12-06 16:16:04,212 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=2, params_count=5
+2025-12-06 16:16:04,713 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=3, params_count=5
+2025-12-06 16:16:05,213 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=4, params_count=5
+2025-12-06 16:16:05,713 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=5, params_count=5
+2025-12-06 16:16:05,713 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=5, sim_time=2.500
+2025-12-06 16:16:05,713 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 16:16:06,074 - data_next - DEBUG - history_storage.py:217 - Flushed 25 records to database
+2025-12-06 16:16:06,134 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:16:06,134 - data_next - ERROR - history_storage.py:299 - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 16:16:57,038 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:16:57,038 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_history.duckdb, stored_variables=all
+2025-12-06 16:16:57,410 - data_next - DEBUG - history_storage.py:217 - Flushed 3 records to database
+2025-12-06 16:16:57,412 - data_next - DEBUG - history_storage.py:296 - Query history returned 6 records
+2025-12-06 16:16:57,414 - data_next - DEBUG - history_storage.py:421 - Query sampled returned 6 records (from 6 timestamps)
+2025-12-06 16:16:57,417 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 3 parameters
+2025-12-06 16:16:57,470 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:16:57,477 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:16:57,477 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:16:57,477 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=2
+2025-12-06 16:16:57,477 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 16:16:57,480 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:16:57,480 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 16:16:57,480 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:16:57,492 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:16:57,492 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_engine_history.duckdb, stored_variables=all
+2025-12-06 16:16:57,492 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 16:16:57,494 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:16:57,494 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:16:57,494 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 16:16:57,494 - data_next - INFO - engine.py:310 - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
+2025-12-06 16:16:57,494 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:16:57,496 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10, sim_time=5.000
+2025-12-06 16:16:57,498 - data_next - DEBUG - history_storage.py:296 - Query history returned 0 records
+2025-12-06 16:16:57,501 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 16:16:57,501 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 16:16:57,501 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 16:16:57,513 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 16:16:57,513 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_realtime_history.duckdb, stored_variables=all
+2025-12-06 16:16:57,513 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 16:16:57,514 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 16:16:57,514 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 16:16:57,515 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 16:16:57,515 - data_next - INFO - engine.py:242 - 切换到 REALTIME 模式（实时运行）
+2025-12-06 16:16:57,515 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 16:16:58,015 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=5
+2025-12-06 16:16:58,516 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=2, params_count=5
+2025-12-06 16:16:59,016 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=3, params_count=5
+2025-12-06 16:16:59,516 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=4, params_count=5
+2025-12-06 16:17:00,017 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=5, params_count=5
+2025-12-06 16:17:00,017 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=5, sim_time=2.500
+2025-12-06 16:17:00,017 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 16:17:00,369 - data_next - DEBUG - history_storage.py:217 - Flushed 25 records to database
+2025-12-06 16:17:00,428 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 16:17:00,429 - data_next - ERROR - history_storage.py:299 - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!

@@ -1,0 +1,18 @@
+2025-12-06 15:23:50,764 - ERROR - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 15:24:43,665 - ERROR - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 15:24:43,667 - ERROR - Failed to query sampled: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 365, in query_sampled
+    all_timestamps = self._conn.execute(sql, params).fetchall()
+                     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!

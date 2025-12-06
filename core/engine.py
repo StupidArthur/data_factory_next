@@ -11,14 +11,26 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 from typing import List, Dict, Any, Iterable
 
-from .clock import Clock, ClockConfig
+from .clock import Clock, ClockConfig, ClockMode
 from .variable import VariableStore
 from .expression import ExpressionNode, ExpressionConfig, AlgorithmNode
 from .factory import InstanceFactory
 from .parser import ProgramConfig
 from utils.logger import get_logger
+
+# 可选导入数据管理模块
+try:
+    from data_manager import RealtimeDataManager, RealtimeConfig, HistoryStorage, HistoryConfig
+    DATA_MANAGER_AVAILABLE = True
+except ImportError:
+    DATA_MANAGER_AVAILABLE = False
+    RealtimeDataManager = None
+    RealtimeConfig = None
+    HistoryStorage = None
+    HistoryConfig = None
 
 
 logger = get_logger()
@@ -33,11 +45,13 @@ class EngineConfig:
     - 物理模型节点
     - 控制算法节点
     - 播放节点（从 CSV/数据库读）
+    
+    注意：
+        - 历史数据长度由 VariableStore 按变量配置，不再使用全局 max_lag_steps
     """
 
     clock: ClockConfig
     expressions: List[ExpressionConfig]
-    max_lag_steps: int = 0
 
 
 class UnifiedEngine:
@@ -53,7 +67,7 @@ class UnifiedEngine:
     def __init__(self, config: EngineConfig, instances: Dict[str, Any] | None = None) -> None:
         self.config = config
         self.clock = Clock(config.clock)
-        self.vars = VariableStore(max_lag_steps=config.max_lag_steps)
+        self.vars = VariableStore()
         self._instances: Dict[str, Any] = instances or {}
         self._nodes: List[Any] = []
         # 只有在提供了 instances 时才创建表达式节点
@@ -64,10 +78,13 @@ class UnifiedEngine:
         else:
             self._expr_nodes: List[ExpressionNode] = []
 
+        # 数据管理模块（可选）
+        self._realtime_manager: Any = None
+        self._history_storage: Any = None
+
         logger.info(
-            "UnifiedEngine initialized: %d expression nodes, max_lag_steps=%d",
+            "UnifiedEngine initialized: %d expression nodes",
             len(self._expr_nodes),
-            self.config.max_lag_steps,
         )
     
     @classmethod
@@ -122,27 +139,189 @@ class UnifiedEngine:
         engine_config = EngineConfig(
             clock=config.clock,
             expressions=expressions,
-            max_lag_steps=config.record_length,
         )
         
         # 创建引擎（传入 instances）
         engine = cls(engine_config, instances=instances)
         engine._nodes = nodes + expr_nodes
         
+        # 根据 lag_requirements 配置每个变量的历史数据长度
+        # 只有需要历史数据的变量才创建历史缓冲区
+        for var_name, max_lag_steps in config.lag_requirements.items():
+            # 加上 50% 的安全余量
+            safe_lag_steps = int(max_lag_steps * 1.5)
+            engine.vars.configure_lag(var_name, safe_lag_steps)
+            logger.debug(
+                "配置变量历史数据: %s, max_lag_steps=%d (需求=%d)",
+                var_name,
+                safe_lag_steps,
+                max_lag_steps,
+            )
+        
         # 初始化所有实例的属性到VariableStore
         for instance_name, instance in instances.items():
             stored_attrs = getattr(instance.__class__, "stored_attributes", [])
             for attr_name in stored_attrs:
+                var_key = f"{instance_name}.{attr_name}"
+                # 检查该属性是否需要历史数据
+                if var_key in config.lag_requirements:
+                    max_lag_steps = config.lag_requirements[var_key]
+                    safe_lag_steps = int(max_lag_steps * 1.5)
+                    engine.vars.configure_lag(var_key, safe_lag_steps)
+                    logger.debug(
+                        "配置实例属性历史数据: %s, max_lag_steps=%d (需求=%d)",
+                        var_key,
+                        safe_lag_steps,
+                        max_lag_steps,
+                    )
+                
                 if hasattr(instance, attr_name):
                     value = getattr(instance, attr_name)
-                    engine.vars.set(f"{instance_name}.{attr_name}", value)
+                    engine.vars.set(var_key, value)
         
         return engine
 
-    # 基本执行 API ------------------------------------------------------
-    def step_once(self) -> Dict[str, Any]:
+    # 数据管理 API ------------------------------------------------------
+    def enable_realtime_data(self, config: Any) -> None:
         """
-        执行一个周期。
+        启用实时数据管理（REALTIME 模式）
+        
+        Args:
+            config: 实时数据配置（RealtimeConfig）
+        """
+        if not DATA_MANAGER_AVAILABLE:
+            raise ImportError("data_manager module not available. Please install redis.")
+        
+        if RealtimeDataManager is None:
+            raise ImportError("RealtimeDataManager not available. Please install redis.")
+        
+        self._realtime_manager = RealtimeDataManager(config)
+        logger.info("实时数据管理已启用")
+    
+    def enable_history_storage(self, config: Any) -> None:
+        """
+        启用历史数据存储（REALTIME 模式）
+        
+        Args:
+            config: 历史数据配置（HistoryConfig）
+        """
+        if not DATA_MANAGER_AVAILABLE:
+            raise ImportError("data_manager module not available. Please install duckdb.")
+        
+        if HistoryStorage is None:
+            raise ImportError("HistoryStorage not available. Please install duckdb.")
+        
+        self._history_storage = HistoryStorage(config)
+        logger.info("历史数据存储已启用")
+
+    # 基本执行 API ------------------------------------------------------
+    def run_realtime(self) -> Iterable[Dict[str, Any]]:
+        """
+        实时模式执行（永久运行，阻塞运行）。
+        
+        特点：
+            - 自动设置 Clock 为 REALTIME 模式（每个周期会 sleep）
+            - 永久运行，直到外部中断（KeyboardInterrupt 等）
+            - 返回生成器，用于流式处理数据
+            - 适合实时模拟、在线运行、与外部系统交互
+        
+        Returns:
+            Iterable[Dict[str, Any]] - 生成器，持续产生快照
+        
+        示例：
+            # 实时运行，与外部系统交互
+            try:
+                for snapshot in engine.run_realtime():
+                    send_to_opcua(snapshot)
+                    read_external_input()
+            except KeyboardInterrupt:
+                print("停止运行")
+        """
+        # 自动设置 Clock 为 REALTIME 模式
+        self.clock.config.mode = ClockMode.REALTIME
+        logger.info("切换到 REALTIME 模式（实时运行）")
+        
+        self.clock.start()
+        try:
+            while True:
+                snapshot = self._step_once()
+                
+                # 如果启用了实时数据管理，推送到 Redis（每个周期都推送）
+                if self._realtime_manager is not None:
+                    try:
+                        self._realtime_manager.push_snapshot(snapshot)
+                    except Exception as e:
+                        logger.error(f"Failed to push snapshot to Redis: {e}", exc_info=True)
+                
+                # 如果启用了历史存储，存储到 DuckDB（只在 need_sample=True 时）
+                if self._history_storage is not None:
+                    try:
+                        need_sample = snapshot.get("need_sample", False)
+                        if need_sample:
+                            # 使用当前时间作为时间戳（真实时间）
+                            timestamp = datetime.now()
+                            self._history_storage.store_snapshot(snapshot, timestamp, need_sample)
+                    except Exception as e:
+                        logger.error(f"Failed to store snapshot to DuckDB: {e}", exc_info=True)
+                
+                yield snapshot
+        finally:
+            self.clock.stop()
+            # 关闭数据管理模块
+            if self._realtime_manager is not None:
+                try:
+                    self._realtime_manager.close()
+                except Exception as e:
+                    logger.error(f"Failed to close realtime manager: {e}", exc_info=True)
+            
+            if self._history_storage is not None:
+                try:
+                    self._history_storage.close()
+                except Exception as e:
+                    logger.error(f"Failed to close history storage: {e}", exc_info=True)
+    
+    def run_generator(self, n: int) -> List[Dict[str, Any]]:
+        """
+        生成器模式执行（快速批量生成）。
+        
+        特点：
+            - 自动设置 Clock 为 GENERATOR 模式（不 sleep，快速执行）
+            - 执行指定周期数，返回所有快照的列表
+            - 适合批量数据生成、测试、离线仿真
+        
+        Args:
+            n: 执行周期数（必须 > 0）
+        
+        Returns:
+            List[Dict[str, Any]] - 所有周期的快照列表
+        
+        示例：
+            # 批量生成 10000 个周期的数据
+            results = engine.run_generator(10000)
+            
+            # 保存到文件
+            save_to_csv(results, 'output.csv')
+        """
+        if n <= 0:
+            raise ValueError(f"生成器模式必须指定周期数 > 0，got n={n}")
+        
+        # 自动设置 Clock 为 GENERATOR 模式
+        self.clock.config.mode = ClockMode.GENERATOR
+        logger.info("切换到 GENERATOR 模式（快速批量生成），执行 %d 个周期", n)
+        
+        results: List[Dict[str, Any]] = []
+        self.clock.start()
+        try:
+            for _ in range(n):
+                snapshot = self._step_once()
+                results.append(snapshot)
+        finally:
+            self.clock.stop()
+        return results
+    
+    def _step_once(self) -> Dict[str, Any]:
+        """
+        执行一个周期（内部方法）。
 
         执行顺序：
         1. 使用当前 `sim_time` 计算本周期的目标时间标签 `t`
@@ -179,46 +358,5 @@ class UnifiedEngine:
         snapshot["sim_time"] = t
         snapshot["exec_ratio"] = exec_ratio
         return snapshot
-
-    def run_for_steps(self, steps: int) -> List[Dict[str, Any]]:
-        """
-        连续执行指定步数。
-
-        注意：
-        - step() 内部会根据 ClockConfig.mode 决定是否等待
-        - REALTIME 模式：每个周期都会 sleep
-        - GENERATOR 模式：不 sleep，快速执行
-
-        Args:
-            steps: 周期数。
-
-        Returns:
-            周期快照列表。
-        """
-        results: List[Dict[str, Any]] = []
-        self.clock.start()
-        try:
-            for _ in range(steps):
-                snapshot = self.step_once()
-                results.append(snapshot)
-        finally:
-            self.clock.stop()
-        return results
-
-    def run_forever(self) -> Iterable[Dict[str, Any]]:
-        """
-        无限循环执行（生成器形式）。
-
-        注意：
-        - 调用方负责中断循环（例如外层 while, try/except KeyboardInterrupt）。
-        - step() 内部会根据 ClockConfig.mode 决定是否 sleep。
-        """
-        self.clock.start()
-        try:
-            while True:
-                snapshot = self.step_once()
-                yield snapshot
-        finally:
-            self.clock.stop()
 
 

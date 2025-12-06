@@ -51,9 +51,8 @@ def debug_display():
         if config.lag_requirements:
             print(f"   - Lag 需求: {config.lag_requirements}")
         
-        # 确保使用GENERATOR模式（不sleep）
-        config.clock.mode = ClockMode.GENERATOR
-        print(f"   - 时钟模式: {config.clock.mode.name} (不sleep)")
+        # 注意：不再需要手动设置模式，run_generator() 会自动设置
+        print(f"   - 时钟模式: 将由 run_generator() 自动设置为 GENERATOR")
     except Exception as e:
         print(f"   [FAIL] 解析失败: {e}")
         import traceback
@@ -75,9 +74,9 @@ def debug_display():
         return
 
     # 3. 执行几个周期
-    print(f"\n3. 执行 20 个周期（GENERATOR模式，不sleep）")
+    print(f"\n3. 执行 10000 个周期（GENERATOR模式，不sleep）")
     try:
-        results = engine.run_for_steps(10000)
+        results = engine.run_generator(10000)
         print(f"   [OK] 执行成功，共 {len(results)} 个周期")
 
         # # 打印每个周期的快照

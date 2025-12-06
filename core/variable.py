@@ -80,17 +80,49 @@ class VariableStore:
 
     - 管理所有变量的当前值与历史缓冲区。
     - 提供按名称与步数访问变量的方法。
+    - 支持按变量配置历史数据长度，只有需要的变量才保存历史。
     """
 
-    def __init__(self, max_lag_steps: int = 0) -> None:
+    def __init__(self) -> None:
         self._vars: Dict[str, VariableState] = {}
-        self._max_lag_steps = max_lag_steps
+        # 记录每个变量需要的历史长度（由 lag_requirements 配置）
+        self._lag_requirements: Dict[str, int] = {}
+
+    def configure_lag(self, name: str, max_lag_steps: int) -> None:
+        """
+        配置变量的历史数据长度。
+        
+        Args:
+            name: 变量名称
+            max_lag_steps: 需要支持的最大滞后步数（>0 才创建历史缓冲区）
+        
+        注意：
+            - 如果变量已存在但没有历史缓冲区，会重新创建并配置历史
+            - 如果 max_lag_steps <= 0，则移除历史缓冲区
+        """
+        self._lag_requirements[name] = max_lag_steps
+        
+        # 如果变量已存在，更新其历史缓冲区配置
+        if name in self._vars:
+            var = self._vars[name]
+            if max_lag_steps > 0:
+                # 需要历史数据：创建或更新历史缓冲区
+                if var.history is None or var.history.maxlen < max_lag_steps:
+                    var.history = RingBuffer(maxlen=max_lag_steps)
+            else:
+                # 不需要历史数据：移除历史缓冲区
+                var.history = None
 
     def ensure(self, name: str, initial: float = 0.0) -> VariableState:
-        """确保变量存在，如不存在则创建。"""
+        """
+        确保变量存在，如不存在则创建。
+        
+        根据 lag_requirements 配置决定是否创建历史缓冲区。
+        """
         if name not in self._vars:
+            max_lag_steps = self._lag_requirements.get(name, 0)
             history = (
-                RingBuffer(maxlen=self._max_lag_steps) if self._max_lag_steps > 0 else None
+                RingBuffer(maxlen=max_lag_steps) if max_lag_steps > 0 else None
             )
             self._vars[name] = VariableState(name=name, value=initial, history=history)
         return self._vars[name]

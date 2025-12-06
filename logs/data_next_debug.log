@@ -78,3 +78,187 @@
 2025-12-05 21:19:17,713 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
 2025-12-05 21:19:17,713 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
 2025-12-05 21:19:18,981 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 13:36:33,990 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 13:36:33,990 - data_next - INFO - engine.py:67 - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
+2025-12-06 13:36:33,990 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 13:36:35,667 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 14:00:52,095 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:00:52,096 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:00:52,096 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:01:19,319 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:01:19,319 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:01:19,319 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:02:41,879 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:02:41,879 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:02:41,880 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:03:20,918 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:03:20,919 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:03:20,919 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:03:31,155 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:03:31,156 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:03:31,156 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:03:45,487 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:03:45,487 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:03:45,487 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:04:39,869 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:04:39,870 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:04:39,870 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:05:31,343 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:05:31,343 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:05:31,343 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:05:40,987 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:05:40,987 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 14:06:02,797 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:06:02,797 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 14:06:02,797 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:06:02,797 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10, sim_time=5.000
+2025-12-06 14:06:10,954 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:06:10,954 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 14:06:18,297 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:06:18,298 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:06:18,298 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:06:18,298 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:06:19,754 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 14:06:33,858 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:06:33,858 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:06:33,858 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:06:33,858 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:06:35,413 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 14:18:41,470 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:18:41,470 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:18:41,470 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:18:41,471 - data_next - INFO - engine.py:230 - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
+2025-12-06 14:18:41,471 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:18:43,043 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 14:19:23,614 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:19:23,614 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 14:19:23,614 - data_next - INFO - engine.py:230 - 切换到 GENERATOR 模式（快速批量生成），执行 5 个周期
+2025-12-06 14:19:23,614 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:19:23,615 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=5, sim_time=2.500
+2025-12-06 14:19:32,035 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:19:32,035 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 14:19:32,036 - data_next - INFO - engine.py:193 - 切换到 REALTIME 模式（实时运行）
+2025-12-06 14:19:32,036 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:19:32,538 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=1, sim_time=0.500
+2025-12-06 14:27:37,089 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:27:37,089 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:27:37,090 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:27:37,090 - data_next - INFO - engine.py:230 - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
+2025-12-06 14:27:37,090 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:27:38,561 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 14:28:15,413 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:28:15,413 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 14:35:10,745 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:35:10,745 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 14:35:10,745 - data_next - DEBUG - engine.py:138 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 14:35:10,745 - data_next - INFO - engine.py:230 - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
+2025-12-06 14:35:10,746 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 14:35:12,205 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-06 14:35:24,020 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 14:35:24,020 - data_next - INFO - engine.py:69 - UnifiedEngine initialized: 0 expression nodes
+2025-12-06 15:23:12,010 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:23:12,010 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
+2025-12-06 15:23:12,558 - data_next - DEBUG - history_storage.py:296 - Query history returned 0 records
+2025-12-06 15:23:12,560 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 0 parameters
+2025-12-06 15:23:12,613 - data_next - DEBUG - history_storage.py:217 - Flushed 3 records to database
+2025-12-06 15:23:12,720 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 15:23:12,726 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 15:23:12,726 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 15:23:12,726 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=2
+2025-12-06 15:23:12,727 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 15:23:34,858 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:23:34,858 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
+2025-12-06 15:23:35,182 - data_next - DEBUG - history_storage.py:217 - Flushed 3 records to database
+2025-12-06 15:23:35,185 - data_next - DEBUG - history_storage.py:296 - Query history returned 2 records
+2025-12-06 15:23:35,188 - data_next - DEBUG - history_storage.py:421 - Query sampled returned 2 records (from 2 timestamps)
+2025-12-06 15:23:35,191 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 3 parameters
+2025-12-06 15:23:35,249 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 15:23:35,256 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 15:23:35,256 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 15:23:35,256 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=2
+2025-12-06 15:23:35,257 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 15:23:46,961 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:23:46,961 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
+2025-12-06 15:23:47,294 - data_next - DEBUG - history_storage.py:217 - Flushed 3 records to database
+2025-12-06 15:23:47,296 - data_next - DEBUG - history_storage.py:296 - Query history returned 3 records
+2025-12-06 15:23:47,298 - data_next - DEBUG - history_storage.py:421 - Query sampled returned 3 records (from 3 timestamps)
+2025-12-06 15:23:47,301 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 3 parameters
+2025-12-06 15:23:47,354 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 15:23:47,360 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 15:23:47,361 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 15:23:47,361 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=2
+2025-12-06 15:23:47,361 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 15:23:47,364 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 15:23:47,364 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 15:23:47,364 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 15:23:47,450 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:23:47,450 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_engine_history.duckdb, stored_variables=all
+2025-12-06 15:23:47,450 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 15:23:47,452 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 15:23:47,452 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 15:23:47,452 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 15:23:47,452 - data_next - INFO - engine.py:310 - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
+2025-12-06 15:23:47,452 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 15:23:47,454 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=10, sim_time=5.000
+2025-12-06 15:23:47,456 - data_next - DEBUG - history_storage.py:296 - Query history returned 0 records
+2025-12-06 15:23:47,499 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 15:23:47,499 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 15:23:47,499 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 15:23:47,585 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:23:47,585 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_realtime_history.duckdb, stored_variables=all
+2025-12-06 15:23:47,585 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 15:23:47,587 - data_next - INFO - realtime_manager.py:105 - Redis connection established
+2025-12-06 15:23:47,587 - data_next - INFO - realtime_manager.py:71 - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-06 15:23:47,587 - data_next - INFO - engine.py:199 - 实时数据管理已启用
+2025-12-06 15:23:47,587 - data_next - INFO - engine.py:242 - 切换到 REALTIME 模式（实时运行）
+2025-12-06 15:23:47,587 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 15:23:48,088 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=1, params_count=5
+2025-12-06 15:23:48,589 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=2, params_count=5
+2025-12-06 15:23:49,089 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=3, params_count=5
+2025-12-06 15:23:49,590 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=4, params_count=5
+2025-12-06 15:23:50,090 - data_next - DEBUG - realtime_manager.py:148 - Snapshot pushed to Redis: cycle_count=5, params_count=5
+2025-12-06 15:23:50,090 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=5, sim_time=2.500
+2025-12-06 15:23:50,090 - data_next - INFO - realtime_manager.py:168 - Redis connection closed
+2025-12-06 15:23:50,703 - data_next - DEBUG - history_storage.py:217 - Flushed 25 records to database
+2025-12-06 15:23:50,763 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 15:23:50,764 - data_next - ERROR - history_storage.py:299 - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 15:24:31,177 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 15:24:31,177 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 15:24:31,177 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 15:24:31,282 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:24:31,282 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_detailed_history.duckdb, stored_variables=all
+2025-12-06 15:24:31,282 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 15:24:31,282 - data_next - INFO - engine.py:242 - 切换到 REALTIME 模式（实时运行）
+2025-12-06 15:24:31,282 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 15:24:43,610 - data_next - DEBUG - history_storage.py:217 - Flushed 100 records to database
+2025-12-06 15:24:43,610 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-06 15:24:43,665 - data_next - INFO - history_storage.py:564 - Database connection closed
+2025-12-06 15:24:43,665 - data_next - ERROR - history_storage.py:299 - Failed to query history: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
+    result = self._conn.execute(sql, params).fetchall()
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 15:24:43,667 - data_next - ERROR - history_storage.py:424 - Failed to query sampled: Connection Error: Connection already closed!
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 365, in query_sampled
+    all_timestamps = self._conn.execute(sql, params).fetchall()
+                     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-06 15:25:35,133 - data_next - INFO - clock.py:124 - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-06 15:25:35,134 - data_next - INFO - engine.py:85 - UnifiedEngine initialized: 1 expression nodes
+2025-12-06 15:25:35,134 - data_next - DEBUG - engine.py:154 - 配置变量历史数据: non_sense_1, max_lag_steps=45 (需求=30)
+2025-12-06 15:25:35,265 - data_next - INFO - history_storage.py:108 - Database table and indexes created
+2025-12-06 15:25:35,265 - data_next - INFO - history_storage.py:69 - HistoryStorage initialized: db_path=test_quick_history.duckdb, stored_variables=all
+2025-12-06 15:25:35,265 - data_next - INFO - engine.py:215 - 历史数据存储已启用
+2025-12-06 15:25:35,265 - data_next - INFO - clock.py:152 - Clock started: cycle_count=0, sim_time=0.000
+2025-12-06 15:25:36,858 - data_next - DEBUG - history_storage.py:217 - Flushed 100 records to database
+2025-12-06 15:25:36,858 - data_next - INFO - clock.py:162 - Clock stopped: cycle_count=20, sim_time=10.000
+2025-12-06 15:25:36,860 - data_next - DEBUG - history_storage.py:296 - Query history returned 100 records
+2025-12-06 15:25:36,863 - data_next - DEBUG - history_storage.py:549 - Get latest values returned 5 parameters
+2025-12-06 15:25:36,922 - data_next - INFO - history_storage.py:564 - Database connection closed

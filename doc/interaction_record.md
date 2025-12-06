@@ -477,4 +477,204 @@
   - **更新交互记录**：
     - 在 `doc/interaction_record.md` 中记录本次修复
 
+---
+
+## 2025-12-02（统一执行入口 run_steps）
+
+- **1. 当前时间**
+  - 2025-12-02（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 合并三个执行方法（step_once、run_for_steps、run_forever）成一个入口 `run_steps(n)`，其中 n=0 代表一直执行。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **统一执行入口**：
+    - 新增 `run_steps(n)` 方法作为统一入口
+    - `n > 0`：执行 n 个周期，返回快照列表 `List[Dict[str, Any]]`
+    - `n = 0`：无限执行，返回生成器 `Iterable[Dict[str, Any]]`
+  - **向后兼容**：
+    - 保留原有的 `step_once()`、`run_for_steps()`、`run_forever()` 方法
+    - `run_for_steps()` 和 `run_forever()` 标记为已废弃，内部调用 `run_steps()`
+    - `step_once()` 保留，因为它是基础方法，被 `run_steps()` 内部调用
+  - **类型注解**：
+    - 使用 `@overload` 装饰器提供准确的类型提示
+    - `n=0` 时返回生成器类型
+    - `n>0` 时返回列表类型
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `core/engine.py`**：
+    - 添加 `run_steps(n)` 方法作为统一执行入口
+    - 使用 `@overload` 装饰器提供类型提示
+    - `n=0` 时返回生成器（无限执行）
+    - `n>0` 时返回列表（执行指定步数）
+    - 自动管理时钟的启动和停止
+    - 保留 `step_once()` 方法（基础方法）
+    - 将 `run_for_steps()` 和 `run_forever()` 标记为已废弃，内部调用 `run_steps()`
+  - **更新测试文件**：
+    - 更新 `test_dsl.py`：使用 `run_steps(10)` 替代 `run_for_steps(10)`
+    - 更新 `debug_display.py`：使用 `run_steps(10000)` 替代 `run_for_steps(10000)`
+  - **更新交互记录**：
+    - 在 `doc/interaction_record.md` 中记录本次修改
+
+---
+
+## 2025-12-06（历史数据按变量配置优化）
+
+- **1. 当前时间**
+  - 2025-12-06（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - `max_lag_steps` 不应该作为 engine 的属性，应该是每个 program 实例和 variable 实例本身应该包含的属性，每个实例应该根据自己情况来各自维护，如果只有一个实例需要滞后数据，那就只有他需要有，其他不需要保存，因为这个是需要消耗性能的。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **性能优化需求**：
+    - 历史数据存储应该按需配置，而不是全局统一配置
+    - 只有需要滞后数据的变量/属性才创建历史缓冲区
+    - 每个变量/属性根据自身的 lag_requirements 配置历史长度
+    - 避免不必要的内存和性能开销
+  - **设计改进**：
+    - 移除 `EngineConfig` 中的 `max_lag_steps` 属性
+    - `VariableStore` 不再使用全局 `max_lag_steps`，改为按变量配置
+    - 新增 `VariableStore.configure_lag()` 方法，支持按变量配置历史长度
+    - 在 `from_program_config()` 中，根据 `lag_requirements` 配置每个变量的历史长度
+    - 只有出现在 `lag_requirements` 中的变量/属性才创建历史缓冲区
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `core/variable.py`**：
+    - 移除 `VariableStore.__init__()` 中的 `max_lag_steps` 参数
+    - 新增 `_lag_requirements` 字典，记录每个变量的历史长度需求
+    - 新增 `configure_lag(name, max_lag_steps)` 方法，支持按变量配置历史长度
+    - 修改 `ensure()` 方法，根据 `_lag_requirements` 决定是否创建历史缓冲区
+    - 只有 `max_lag_steps > 0` 的变量才创建历史缓冲区
+  - **修改 `core/engine.py`**：
+    - 移除 `EngineConfig` 中的 `max_lag_steps` 属性
+    - 修改 `UnifiedEngine.__init__()`，不再传递 `max_lag_steps` 给 `VariableStore`
+    - 修改 `from_program_config()` 方法：
+      - 根据 `config.lag_requirements` 配置每个变量的历史长度
+      - 对于 Variable 类型的变量，直接配置历史长度
+      - 对于实例属性（如 `pid1.mv`），也根据 `lag_requirements` 配置历史长度
+      - 只有需要历史数据的变量/属性才调用 `configure_lag()`
+      - 添加调试日志，记录每个变量的历史配置
+  - **性能优化效果**：
+    - 只有需要历史数据的变量才创建历史缓冲区，节省内存
+    - 每个变量根据实际需求配置历史长度，避免浪费
+    - 例如：如果只有 `non_sense_1` 需要 30 步历史，只有它创建历史缓冲区，其他变量不创建
+  - **更新交互记录**：
+    - 在 `doc/interaction_record.md` 中记录本次优化
+
+---
+
+## 2025-12-06（重构执行入口为 run_realtime 和 run_generator）
+
+- **1. 当前时间**
+  - 2025-12-06（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 把入口改成两个：`run_realtime()` 和 `run_generator(n: int)`。然后在这两个分支中，会直接把 Clock 的运行模式也配置掉，不需要额外配置。统一就是，生成模式需要执行周期数，实时模式就是永久运行（阻塞运行）。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **重构执行入口**：
+    - 新增 `run_realtime()` 方法：实时模式，永久运行（阻塞运行），返回生成器
+    - 新增 `run_generator(n: int)` 方法：生成器模式，执行指定周期数，返回列表
+    - 在这两个方法中自动配置 Clock 的运行模式，不需要额外配置
+  - **设计原则**：
+    - 生成模式：需要执行周期数，快速批量生成，返回列表
+    - 实时模式：永久运行（阻塞运行），返回生成器，用于流式处理
+  - **向后兼容**：
+    - `run_steps()` 方法保留但标记为已废弃，内部调用新方法
+    - `n=0` 时调用 `run_realtime()`
+    - `n>0` 时调用 `run_generator(n)`
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `core/engine.py`**：
+    - 导入 `ClockMode` 枚举
+    - 新增 `run_realtime()` 方法：
+      - 自动设置 Clock 为 REALTIME 模式
+      - 永久运行，返回生成器
+      - 适合实时模拟、在线运行、与外部系统交互
+    - 新增 `run_generator(n: int)` 方法：
+      - 自动设置 Clock 为 GENERATOR 模式
+      - 执行指定周期数，返回列表
+      - 适合批量数据生成、测试、离线仿真
+      - 如果 n <= 0，抛出 ValueError
+    - 修改 `run_steps()` 方法：
+      - 标记为已废弃
+      - `n=0` 时调用 `run_realtime()`
+      - `n>0` 时调用 `run_generator(n)`
+  - **更新测试文件**：
+    - 更新 `debug_display.py`：使用 `run_generator(10000)` 替代 `run_steps(10000)`
+    - 更新 `test_dsl.py`：使用 `run_generator(10)` 替代 `run_steps(10)`
+    - 移除手动设置 Clock 模式的代码（不再需要）
+  - **设计优势**：
+    - 接口更清晰：方法名直接表达意图
+    - 自动配置：不需要手动设置 Clock 模式
+    - 类型明确：返回值类型更明确（生成器 vs 列表）
+    - 语义清晰：实时模式永久运行，生成模式批量生成
+  - **更新交互记录**：
+    - 在 `doc/interaction_record.md` 中记录本次重构
+
+---
+
+## 2025-12-06（删除所有废弃代码）
+
+- **1. 当前时间**
+  - 2025-12-06（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 不需要考虑兼容性，所有废弃的代码都删掉。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **删除废弃方法**：
+    - 删除 `run_steps()` 方法（已废弃）
+    - 删除 `run_for_steps()` 方法（已废弃）
+    - 删除 `run_forever()` 方法（已废弃）
+  - **清理导入**：
+    - 删除不再使用的 `Union` 和 `overload` 导入
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `core/engine.py`**：
+    - 删除 `run_steps()` 方法
+    - 删除 `run_for_steps()` 方法
+    - 删除 `run_forever()` 方法
+    - 删除不再使用的 `Union` 和 `overload` 导入
+    - 保留 `step_once()` 方法（基础方法，被新方法调用）
+  - **验证**：
+    - 代码编译通过
+    - `debug_display.py` 正常运行
+    - 所有测试通过
+  - **更新交互记录**：
+    - 在 `doc/interaction_record.md` 中记录本次删除操作
+
+---
+
+## 2025-12-06（将 step_once 改为私有方法）
+
+- **1. 当前时间**
+  - 2025-12-06（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 对于 Engine 来说，step_once 这个函数应该是一个内部函数吧。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **方法可见性调整**：
+    - `step_once()` 方法只被 `run_realtime()` 和 `run_generator()` 内部调用
+    - 不应该对外暴露，应该改为私有方法
+    - 使用下划线前缀 `_step_once()` 表示私有方法
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `core/engine.py`**：
+    - 将 `step_once()` 重命名为 `_step_once()`（私有方法）
+    - 更新 `run_realtime()` 中的调用：`self.step_once()` → `self._step_once()`
+    - 更新 `run_generator()` 中的调用：`self.step_once()` → `self._step_once()`
+    - 更新方法文档，标注为"内部方法"
+  - **验证**：
+    - 代码编译通过
+    - `debug_display.py` 正常运行
+    - `step_once`: False（已删除）
+    - `_step_once`: True（存在）
+  - **更新交互记录**：
+    - 在 `doc/interaction_record.md` 中记录本次修改
+
+---
+
 

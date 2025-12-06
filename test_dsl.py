@@ -62,7 +62,7 @@ def test_dsl_demo1():
     # 3. 执行几个周期
     print(f"\n3. 执行 10 个周期")
     try:
-        results = engine.run_for_steps(10)
+        results = engine.run_generator(10)
         print(f"   [OK] 执行成功，共 {len(results)} 个周期")
 
         # 打印前 3 个周期的快照

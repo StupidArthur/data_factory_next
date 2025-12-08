@@ -83,3 +83,131 @@
 2025-12-08 19:23:35,641 - INFO - Subscribed to Redis Pub/Sub channel: data_factory
 2025-12-08 19:24:55,632 - WARNING - Cycle execution time (0.304s) exceeds 60% of cycle_time (0.500s * 0.6 = 0.300s), cycle_count=170, execution_time=0.304s, cycle_time=0.500s
 2025-12-08 19:31:50,776 - INFO - Snapshot pushed to Redis: cycle_count=1000, params_count=36
+2025-12-08 19:40:11,321 - INFO - Snapshot pushed to Redis: cycle_count=2000, params_count=36
+2025-12-08 19:40:53,113 - INFO - Update loop: updated 1000 times, total nodes: 36, params in Redis: 36
+2025-12-08 19:46:39,003 - WARNING - Cycle execution time (0.763s) exceeds 60% of cycle_time (0.500s * 0.6 = 0.300s), cycle_count=2773, execution_time=0.763s, cycle_time=0.500s
+2025-12-08 19:46:39,013 - WARNING - Cycle execution time (0.763s) >= cycle_time (0.500s), no time left for sleep, cycle_count=2773
+2025-12-08 19:48:32,139 - INFO - Snapshot pushed to Redis: cycle_count=3000, params_count=36
+2025-12-08 19:56:52,678 - INFO - Snapshot pushed to Redis: cycle_count=4000, params_count=36
+2025-12-08 19:58:09,520 - INFO - Update loop: updated 2000 times, total nodes: 36, params in Redis: 36
+2025-12-08 19:59:16,837 - WARNING - Cycle execution time (0.506s) exceeds 60% of cycle_time (0.500s * 0.6 = 0.300s), cycle_count=4287, execution_time=0.506s, cycle_time=0.500s
+2025-12-08 19:59:16,838 - WARNING - Cycle execution time (0.506s) >= cycle_time (0.500s), no time left for sleep, cycle_count=4287
+2025-12-08 20:00:18,230 - WARNING - Cycle execution time (11.842s) exceeds 60% of cycle_time (0.500s * 0.6 = 0.300s), cycle_count=4387, execution_time=11.842s, cycle_time=0.500s
+2025-12-08 20:00:18,231 - WARNING - Cycle execution time (11.842s) >= cycle_time (0.500s), no time left for sleep, cycle_count=4387
+2025-12-08 20:04:17,329 - INFO - 解析配置文件: F:\gitee\data_factory_next\config\dsl_demo1.yaml
+2025-12-08 20:04:17,332 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-08 20:04:17,332 - INFO - UnifiedEngine initialized: 2 expression nodes
+2025-12-08 20:04:17,339 - INFO - Redis connection established
+2025-12-08 20:04:17,339 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-08 20:04:17,339 - INFO - 实时数据管理已启用
+2025-12-08 20:04:17,339 - INFO - 实时数据管理已启用（推送到 Redis）
+2025-12-08 20:04:17,339 - INFO - 引擎创建成功，开始实时运行（按 Ctrl+C 停止）
+2025-12-08 20:04:17,339 - INFO - 切换到 REALTIME 模式（实时运行）
+2025-12-08 20:04:17,339 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-08 20:04:19,035 - INFO - Redis connection established in OPCUA Server
+2025-12-08 20:04:19,035 - INFO - OPCUA Server initialized: server_url=opc.tcp://0.0.0.0:18953, redis=localhost:6379/0, channel=data_factory
+2025-12-08 20:04:19,035 - INFO - ============================================================
+2025-12-08 20:04:19,035 - INFO - 启动 OPCUA Server
+2025-12-08 20:04:19,035 - INFO - Server URL: opc.tcp://0.0.0.0:18953
+2025-12-08 20:04:19,035 - INFO - Redis: localhost:6379/0
+2025-12-08 20:04:19,035 - INFO - ============================================================
+2025-12-08 20:04:19,038 - INFO - OPCUA Server started in background thread
+2025-12-08 20:04:19,038 - INFO - OPCUA Server 运行中，按 Ctrl+C 停止
+2025-12-08 20:04:19,777 - INFO - OPCUA Server namespace registered: http://data_factory.opcua (idx=2)
+2025-12-08 20:04:19,778 - INFO - OPCUA Server initialized
+2025-12-08 20:04:19,778 - INFO - OPCUA Server started at opc.tcp://0.0.0.0:18953
+2025-12-08 20:04:19,778 - INFO - Available endpoints:
+2025-12-08 20:04:19,778 - INFO -   - opc.tcp://0.0.0.0:18953
+2025-12-08 20:04:19,778 - INFO -     Security Policy: http://opcfoundation.org/UA/SecurityPolicy#None
+2025-12-08 20:04:19,779 - INFO -     Security Mode: 1
+2025-12-08 20:04:19,779 - ERROR - Failed to create node pid1.MV: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,780 - ERROR - Failed to create node pid1.PV: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,782 - ERROR - Failed to create node pid1.SV: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,783 - ERROR - Failed to create node pid1.PB: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,784 - ERROR - Failed to create node pid1.TI: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,785 - ERROR - Failed to create node pid1.TD: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,786 - ERROR - Failed to create node pid1.H: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,787 - ERROR - Failed to create node pid1.L: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,788 - ERROR - Failed to create node sin1.amplitude: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,789 - ERROR - Failed to create node sin1.period: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,790 - ERROR - Failed to create node sin1.phase: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,791 - ERROR - Failed to create node tank1.level: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,792 - ERROR - Failed to create node tank1.height: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,793 - ERROR - Failed to create node tank1.radius: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,794 - ERROR - Failed to create node tank1.inlet_area: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,795 - ERROR - Failed to create node tank1.inlet_velocity: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,796 - ERROR - Failed to create node tank1.outlet_area: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,797 - ERROR - Failed to create node tank1.initial_level: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,798 - ERROR - Failed to create node tank1.valve_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,799 - ERROR - Failed to create node valve1.current_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,800 - ERROR - Failed to create node valve1.min_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,801 - ERROR - Failed to create node valve1.max_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,802 - ERROR - Failed to create node valve1.full_travel_time: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,803 - ERROR - Failed to create node valve1.initial_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,805 - ERROR - Failed to create node valve1.target_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,806 - ERROR - Failed to create node non_sense_1.out: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,807 - ERROR - Failed to create node non_sense_1.L: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,808 - ERROR - Failed to create node non_sense_1.H: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,809 - ERROR - Failed to create node non_sense_1.max_step: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,810 - ERROR - Failed to create node non_sense_2.out: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,811 - ERROR - Failed to create node non_sense_2.L: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,812 - ERROR - Failed to create node non_sense_2.H: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,813 - ERROR - Failed to create node non_sense_2.max_step: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,814 - ERROR - Failed to create node sin1.out: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,815 - ERROR - Failed to create node non_sense_3: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,816 - ERROR - Failed to create node non_sense_4: 'Node' object has no attribute 'set_display_name'
+2025-12-08 20:04:19,817 - INFO - Subscribed to Redis Pub/Sub channel: data_factory
+2025-12-08 20:05:00,128 - INFO - 收到中断信号，正在关闭...
+2025-12-08 20:05:00,128 - INFO - Stopping OPCUA Server...
+2025-12-08 20:05:00,129 - ERROR - Error in pubsub loop: I/O operation on closed file.
+Traceback (most recent call last):
+  File "F:\python313\Lib\site-packages\redis\_parsers\socket.py", line 65, in _read_from_socket
+    data = self._sock.recv(socket_read_size)
+OSError: [WinError 10038] 在一个非套接字上尝试了一个操作。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\data_manager\opcua_server.py", line 326, in _pubsub_loop
+    message = pubsub.get_message(timeout=0.1)
+  File "F:\python313\Lib\site-packages\redis\client.py", line 1187, in get_message
+    response = self.parse_response(block=(timeout is None), timeout=timeout)
+  File "F:\python313\Lib\site-packages\redis\client.py", line 998, in parse_response
+    response = self._execute(conn, try_read)
+  File "F:\python313\Lib\site-packages\redis\client.py", line 972, in _execute
+    response = conn.retry.call_with_retry(
+        lambda: command(*args, **kwargs),
+        lambda _: self._reconnect(conn),
+    )
+  File "F:\python313\Lib\site-packages\redis\retry.py", line 116, in call_with_retry
+    return do()
+  File "F:\python313\Lib\site-packages\redis\client.py", line 973, in <lambda>
+    lambda: command(*args, **kwargs),
+            ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "F:\python313\Lib\site-packages\redis\client.py", line 992, in try_read
+    if not conn.can_read(timeout=timeout):
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "F:\python313\Lib\site-packages\redis\connection.py", line 1110, in can_read
+    return self._parser.can_read(timeout)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "F:\python313\Lib\site-packages\redis\_parsers\base.py", line 158, in can_read
+    return self._buffer and self._buffer.can_read(timeout)
+                            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "F:\python313\Lib\site-packages\redis\_parsers\socket.py", line 95, in can_read
+    return bool(self.unread_bytes()) or self._read_from_socket(
+                                        ~~~~~~~~~~~~~~~~~~~~~~^
+        timeout=timeout, raise_on_timeout=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "F:\python313\Lib\site-packages\redis\_parsers\socket.py", line 90, in _read_from_socket
+    buf.seek(current_pos)
+    ~~~~~~~~^^^^^^^^^^^^^
+ValueError: I/O operation on closed file.
+2025-12-08 20:05:00,129 - INFO - Redis connection closed
+2025-12-08 20:05:00,218 - WARNING - OPCUA Server is not running
+2025-12-08 20:05:00,219 - INFO - Redis connection closed
+2025-12-08 20:05:00,220 - INFO - OPCUA Server 已停止
+2025-12-08 20:05:02,198 - INFO - Clock stopped: cycle_count=89, sim_time=44.500
+2025-12-08 20:05:02,198 - INFO - Redis connection closed
+2025-12-08 20:05:02,198 - INFO - 用户中断，停止运行

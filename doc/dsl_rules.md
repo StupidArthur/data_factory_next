@@ -20,7 +20,7 @@ program:
   - 必须有 `init_args`（初始化参数）
   - `expression` 格式：`<instance_name>.execute(...)`
   - 每个周期调用 `execute()` 更新内部状态
-  - 可以输出多个属性（如 `pid1.mv`, `tank1.level`）
+  - 可以输出多个属性（如 `pid1.MV`, `tank1.level`）
 
 #### B. 变量类型（无状态计算）
 - **类型**：`Variable`
@@ -33,7 +33,7 @@ program:
 
 #### A. 方法调用表达式（算法/模型实例）
 ```yaml
-expression: pid1.execute(pv=tank1.level, sv=sin1.out)
+expression: pid1.execute(PV=tank1.level, SV=sin1.out)
 expression: tank1.execute(valve_opening=valve1.current_opening)
 expression: sin1.execute()
 ```
@@ -59,7 +59,7 @@ expression: non_sense_4 = sin(non_sense_3, 3600, 0)
 #### C. 属性访问
 - 在表达式中可以访问其他实例的属性：
   - `tank1.level`
-  - `pid1.mv`
+  - `pid1.MV`
   - `valve1.current_opening`
   - `sin1.out`
 
@@ -88,18 +88,18 @@ expression: non_sense_4 = sin(non_sense_3, 3600, 0)
 **问题**：`pid1.execute(...)` 返回什么？如何访问返回值？
 
 **当前示例中的用法**：
-- `pid1.execute(pv=tank1.level, sv=sin1.out)` - 调用 execute
-- `valve1.execute(target_opening=pid1.mv)` - 访问 `pid1.mv` 属性
+- `pid1.execute(PV=tank1.level, SV=sin1.out)` - 调用 execute
+- `valve1.execute(target_opening=pid1.MV)` - 访问 `pid1.MV` 属性
 
 **待明确**：
 1. `execute()` 是否返回一个对象/字典，包含所有输出属性？
 2. 还是 `execute()` 只是更新内部状态，属性通过 `instance.attribute` 访问？
-3. 如果 `pid1.execute()` 返回 `{mv: 50.0, ...}`，那么 `pid1.mv` 是访问返回值还是访问实例属性？
+3. 如果 `pid1.execute()` 返回 `{MV: 50.0, ...}`，那么 `pid1.MV` 是访问返回值还是访问实例属性？
 
 **建议**：
 - `execute()` 更新内部状态，不返回值（或返回 None）
 - 属性通过 `instance.attribute` 访问，这些属性在 `execute()` 调用后自动更新
-- 在表达式解析时，`pid1.mv` 会被解析为“访问 `pid1` 实例的 `mv` 属性”
+- 在表达式解析时，`pid1.MV` 会被解析为"访问 `pid1` 实例的 `MV` 属性"
 
 ### 4.2 时间变量 `t` 和控制器周期
 
@@ -177,9 +177,9 @@ expression: non_sense_4 = sin(non_sense_3, 3600, 0)
 **问题**：如果存在循环依赖（如 `pid1 -> valve1 -> tank1 -> pid1`），如何确定执行顺序？
 
 **当前示例**：
-- `pid1.execute(pv=tank1.level, sv=sin1.out)` 依赖 `tank1.level`
+- `pid1.execute(PV=tank1.level, SV=sin1.out)` 依赖 `tank1.level`
 - `tank1.execute(valve_opening=valve1.current_opening)` 依赖 `valve1.current_opening`
-- `valve1.execute(target_opening=pid1.mv)` 依赖 `pid1.mv`
+- `valve1.execute(target_opening=pid1.MV)` 依赖 `pid1.MV`
 - 这是一个循环依赖
 
 **待明确**：
@@ -253,7 +253,7 @@ expression: non_sense_4 = sin(non_sense_3, 3600, 0)
 - **存储长度**：通过 `record_length` 配置项指定历史记录长度（默认 1000）
 - **存储键名**：
   - Variable：直接使用变量名（如 `non_sense_3`）
-  - 算法/模型属性：使用 `instance_name.attribute_name`（如 `pid1.mv`、`tank1.level`）
+  - 算法/模型属性：使用 `instance_name.attribute_name`（如 `pid1.MV`、`tank1.level`）
 - **访问语法**：
   - 当前值：`variable_name` 或 `instance.attribute`
   - 历史值：`variable_name[-30]` 或 `instance.attribute[-30]`

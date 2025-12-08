@@ -213,7 +213,7 @@
       - 算法/模型类型（有状态）：`PID`, `SINE_WAVE`, `SQUARE_WAVE`, `TRIANGLE_WAVE`, `LIST_WAVE`, `CYLINDRICAL_TANK`, `VALVE`, `RANDOM` 等，必须有 `init_args`，expression 格式为 `instance.execute(...)`。
       - 变量类型（无状态）：`Variable`，无 `init_args`，expression 格式为 `variable_name = expression`。
     - 表达式语法：
-      - 方法调用：`pid1.execute(pv=tank1.level, sv=sin1.out)`。
+      - 方法调用：`pid1.execute(PV=tank1.level, SV=sin1.out)`。
       - 属性访问：`tank1.level`, `pid1.mv`。
       - 支持 lag：`non_sense_1[-30]`（Variable 类型）。
     - 依赖关系：通过表达式中的变量引用自动推导，拓扑排序确定执行顺序。

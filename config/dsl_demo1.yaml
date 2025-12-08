@@ -4,12 +4,12 @@ program:
   - name: pid1
     type: PID
     init_args:
-      sv: 1.0
-      mv: 0.0
-      pb: 120
-      ti: 30
-      td: 0.15
-    expression: pid1.execute(pv=tank1.level, sv=sin1.out)
+      SV: 1.0
+      MV: 0.0
+      PB: 120
+      TI: 30
+      TD: 0.15
+    expression: pid1.execute(PV=tank1.level, SV=sin1.out)
   - name: sin1
     type: SINE_WAVE
     init_args:
@@ -31,7 +31,7 @@ program:
       max_opening: 100.0
       step: 0.1
       full_travel_time: 10.0
-    expression: valve1.execute(target_opening=pid1.mv)
+    expression: valve1.execute(target_opening=pid1.MV)
   - name: non_sense_1
     type: RANDOM
     init_args:

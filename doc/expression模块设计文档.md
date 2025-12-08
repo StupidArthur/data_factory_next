@@ -109,7 +109,7 @@ ExpressionConfig(
 # 算法/模型类型
 ExpressionConfig(
     name="pid1",
-    expression="pid1.execute(pv=tank1.level, sv=sin1.out)"
+    expression="pid1.execute(PV=tank1.level, SV=sin1.out)"
 )
 ```
 
@@ -201,8 +201,8 @@ class InstanceProxy:
 **使用示例**：
 ```python
 # 在表达式中使用
-pid1.mv              # 访问 pid1 的 mv 属性
-pid1.execute(pv=10)  # 调用 pid1 的 execute 方法
+pid1.MV              # 访问 pid1 的 MV 属性
+pid1.execute(PV=10)  # 调用 pid1 的 execute 方法
 ```
 
 ### 3.5 AttributeProxy
@@ -234,7 +234,7 @@ class AttributeProxy:
 
 **存储键名规则**：
 - 使用 `instance_name.attribute_name` 作为存储键
-- 例如：`pid1.mv` 存储在 `VariableStore` 中的键名为 `"pid1.mv"`
+- 例如：`pid1.MV` 存储在 `VariableStore` 中的键名为 `"pid1.MV"`
 
 **使用示例**：
 ```python
@@ -360,13 +360,13 @@ value = node.step(vars_store)  # 计算结果并写入 VariableStore
 
 **属性存储规则**：
 - 使用 `instance_name.attribute_name` 作为存储键
-- 例如：`pid1.mv` 存储在 `VariableStore` 中的键名为 `"pid1.mv"`
+- 例如：`pid1.MV` 存储在 `VariableStore` 中的键名为 `"pid1.MV"`
 
 **使用示例**：
 ```python
 # 配置
 instance = PID(...)
-expression = "pid1.execute(pv=tank1.level, sv=sin1.out)"
+expression = "pid1.execute(PV=tank1.level, SV=sin1.out)"
 stored_attributes = ["mv", "pv", "sv", "error"]
 
 # 执行
@@ -477,12 +477,12 @@ instance.attribute[-30]  # 30 步之前的值
 
 ```python
 # 算法/模型执行
-pid1.execute(pv=tank1.level, sv=sin1.out)
+pid1.execute(PV=tank1.level, SV=sin1.out)
 
 # 支持复杂参数表达式
 pid1.execute(
-    pv=tank1.level[-10],
-    sv=sin1.out + 5
+    PV=tank1.level[-10],
+    SV=sin1.out + 5
 )
 ```
 
@@ -623,12 +623,12 @@ result = vars_store.get("result")  # 7.0
 from data_next.core.expression import AlgorithmNode
 
 # 创建算法实例
-pid = PID(pb=1.0, ti=30.0, td=0.15)
+pid = PID(PB=1.0, TI=30.0, TD=0.15)
 
 # 创建算法节点
 node = AlgorithmNode(
     instance=pid,
-    expression="pid1.execute(pv=tank1.level, sv=sin1.out)",
+    expression="pid1.execute(PV=tank1.level, SV=sin1.out)",
     stored_attributes=["mv", "pv", "sv", "error"],
     instance_name="pid1",
     instances={"tank1": tank, "sin1": sin_gen}
@@ -638,7 +638,7 @@ node = AlgorithmNode(
 node.step(vars_store)
 
 # 获取输出
-mv = vars_store.get("pid1.mv")
+mv = vars_store.get("pid1.MV")
 ```
 
 ### 9.3 复杂表达式
@@ -653,7 +653,7 @@ config = ExpressionConfig(
 # 属性访问
 config = ExpressionConfig(
     name="output",
-    expression="output = pid1.mv + tank1.level * 0.5"
+    expression="output = pid1.MV + tank1.level * 0.5"
 )
 
 # 函数调用

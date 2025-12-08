@@ -150,8 +150,14 @@ class RealtimeDataManager:
                 snapshot.get("cycle_count", 0),
                 len(push_data["params"]),
             )
+        except redis.ConnectionError as e:
+            logger.error("Redis 连接错误，推送快照失败: %s", e, exc_info=True)
+            # 不抛出异常，避免影响主流程
+        except redis.TimeoutError as e:
+            logger.error("Redis 超时错误，推送快照失败: %s", e, exc_info=True)
+            # 不抛出异常，避免影响主流程
         except Exception as e:
-            logger.error(f"Failed to push snapshot to Redis: {e}", exc_info=True)
+            logger.error("推送快照到 Redis 失败: %s", e, exc_info=True)
             # 不抛出异常，避免影响主流程
     
     def close(self) -> None:

@@ -677,4 +677,53 @@
 
 ---
 
+## 2025-12-06（代码评审与改进）
+
+- **1. 当前时间**
+  - 2025-12-06（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 评审下整个项目的代码。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **代码评审范围**：
+    - 架构设计：模块化、可复用性、参数化设计
+    - 代码注释：模块、类、方法的注释完整性
+    - 日志系统：日志模块的使用和关键位置的日志记录
+    - 参数化设计：魔法数字提取、文件名参数化、输入输出文件对应关系
+    - 代码质量：错误处理、类型注解、代码组织
+  - **发现的主要问题**：
+    1. `run_opcua_server.py` 使用命令行参数，不符合规则要求（应使用函数参数）
+    2. 存在多处魔法数字（0.6、1.5、100等）未提取为常量
+    3. 部分关键位置缺少日志记录
+    4. 部分性能优化点（如 `get_by_lag` 的列表转换）
+    5. 异常处理过于宽泛（捕获 `Exception`）
+    6. 部分复杂逻辑缺少详细注释
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修复参数传递方式**：
+    - 修改 `data_manager/run_opcua_server.py`：移除 `argparse`，改为函数参数方式
+    - 新增 `run_opcua_server()` 函数，在 `__main__` 中直接调用
+  - **提取魔法数字为常量**：
+    - `core/clock.py`：添加 `EXECUTION_TIME_WARNING_THRESHOLD`、`LAG_SAFETY_MARGIN`、`MIN_RECORD_LENGTH`
+    - `core/parser.py`：使用 `clock.py` 中定义的常量
+    - `data_manager/history_storage.py`：添加 `BATCH_INSERT_SIZE` 常量
+  - **补充关键位置的日志**：
+    - `core/engine.py`：在 `_step_once()` 中添加调试日志和节点执行错误日志
+    - `data_manager/history_storage.py`：改进批量插入的日志（成功/失败）
+  - **优化性能**：
+    - `core/variable.py`：优化 `get_by_lag()` 方法，直接使用索引访问，避免转换为列表
+  - **细化异常处理**：
+    - `core/expression.py`：细化异常类型（SyntaxError、NameError、TypeError、ZeroDivisionError）
+    - `data_manager/realtime_manager.py`：细化 Redis 异常类型（ConnectionError、TimeoutError）
+  - **补充复杂逻辑的注释**：
+    - `core/expression.py`：补充 `_transform_instance_names()` 和 `_parse_expression()` 方法的详细注释
+    - 解释 AST 转换逻辑和参数解析逻辑
+  - **验证**：
+    - 所有修改通过语法检查
+    - 无 linter 错误
+    - 代码符合项目规范
+
+---
+
 

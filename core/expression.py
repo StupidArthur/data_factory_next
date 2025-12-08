@@ -101,6 +101,14 @@ class ExpressionEvaluator:
             value = eval(compiled, {"__builtins__": {}}, env)
             
             return float(value)
+        except SyntaxError as exc:
+            raise ExpressionError(f"表达式语法错误: {expression}, 错误: {exc}") from exc
+        except NameError as exc:
+            raise ExpressionError(f"表达式变量未定义: {expression}, 错误: {exc}") from exc
+        except TypeError as exc:
+            raise ExpressionError(f"表达式类型错误: {expression}, 错误: {exc}") from exc
+        except ZeroDivisionError as exc:
+            raise ExpressionError(f"表达式除零错误: {expression}, 错误: {exc}") from exc
         except Exception as exc:  # noqa: BLE001
             raise ExpressionError(f"表达式执行失败: {expression}, 错误: {exc}") from exc
 
@@ -123,18 +131,33 @@ class ExpressionEvaluator:
             转换后的AST树
         """
         class InstanceNameTransformer(ast.NodeTransformer):
+            """
+            AST 节点转换器：将直接使用实例名的情况转换为 .out 属性访问。
+            
+            转换规则：
+            1. 如果遇到 Name 节点，且名称在 instances 中，且不是函数名，且不在属性访问中
+               则转换为 Attribute 节点（instance_name.out）
+            2. 如果遇到 Attribute 节点，标记 _in_attribute=True，避免重复转换
+            3. 如果遇到 Call 节点（方法调用），不转换，但递归处理参数
+            """
             def __init__(self, instances: Dict[str, Any]) -> None:
                 self.instances = instances
-                self._in_attribute = False  # 标记是否在属性访问中
+                self._in_attribute = False  # 标记是否在属性访问中，避免重复转换
             
             def visit_Name(self, node: ast.Name) -> ast.AST:
-                # 如果名称在instances中，且不是函数名，且不在属性访问中，则转换为 .out 属性访问
+                """
+                处理 Name 节点（变量名或实例名）。
+                
+                转换逻辑：
+                - 如果名称在 instances 中，且不是函数名，且不在属性访问中
+                - 则转换为 instance_name.out 的 Attribute 节点
+                """
                 if node.id in self.instances and not self._in_attribute:
-                    # 检查是否是函数名
+                    # 检查是否是函数名（函数名不需要转换）
                     func = InstanceRegistry.get_function(node.id)
                     if func is None:
                         # 转换为 instance_name.out
-                        # 需要设置 lineno 和 col_offset，否则 compile 会失败
+                        # 注意：需要设置 lineno 和 col_offset，否则 compile 会失败
                         new_name = ast.Name(id=node.id, ctx=ast.Load())
                         new_name.lineno = getattr(node, 'lineno', 1)
                         new_name.col_offset = getattr(node, 'col_offset', 0)
@@ -150,6 +173,12 @@ class ExpressionEvaluator:
                 return node
             
             def visit_Attribute(self, node: ast.Attribute) -> ast.AST:
+                """
+                处理 Attribute 节点（属性访问）。
+                
+                如果已经是属性访问（如 instance.attr），标记状态避免重复转换，
+                然后递归处理子节点。
+                """
                 # 如果已经是属性访问，标记状态，然后递归处理
                 # 如果 value 是 Name 且在 instances 中，说明已经是 instance.attr 的形式，不需要转换
                 old_in_attribute = self._in_attribute
@@ -162,6 +191,12 @@ class ExpressionEvaluator:
                     self._in_attribute = old_in_attribute
             
             def visit_Call(self, node: ast.Call) -> ast.AST:
+                """
+                处理 Call 节点（方法调用或函数调用）。
+                
+                方法调用（如 instance.execute()）不需要转换，
+                但需要递归处理参数，因为参数中可能包含需要转换的实例名。
+                """
                 # 方法调用（如 instance.execute()）不需要转换
                 # 但需要递归处理参数
                 self.generic_visit(node)
@@ -631,11 +666,20 @@ class AlgorithmNode:
         例如：pid1.execute(pv=tank1.level, sv=sin1.out)
         返回：{"pv": "tank1.level", "sv": "sin1.out"}
 
+        解析逻辑：
+        1. 使用 ast.parse 解析表达式为 AST
+        2. 验证根节点是 Call 节点（方法调用）
+        3. 遍历关键字参数，将参数值转换为字符串表达式
+        4. 支持多种 AST 节点类型：Name、Attribute、Subscript、Constant 等
+
         Args:
-            expression: 表达式字符串
+            expression: 表达式字符串（必须是方法调用格式）
 
         Returns:
             参数字典 {参数名: 参数表达式字符串}
+
+        Raises:
+            ExpressionError: 如果表达式解析失败或不是方法调用
         """
         try:
             tree = ast.parse(expression, mode="eval")
@@ -656,15 +700,17 @@ class AlgorithmNode:
                 # 这里简化处理，对于简单情况可以工作
                 # 对于复杂表达式，建议使用 Python 3.9+
                 if isinstance(keyword.value, ast.Name):
+                    # 变量名：直接使用 id
                     param_expr = keyword.value.id
                 elif isinstance(keyword.value, ast.Attribute):
+                    # 属性访问：instance.attr
                     if isinstance(keyword.value.value, ast.Name):
                         param_expr = f"{keyword.value.value.id}.{keyword.value.attr}"
                     else:
                         # 复杂情况，使用 repr 作为后备
-                        param_expr = repr(keyword.value)
+                        param_expr = repr(keyword.value.value)
                 elif isinstance(keyword.value, ast.Subscript):
-                    # 处理 v1[-30] 或 tank1.level[-30]
+                    # 历史数据访问：v1[-30] 或 tank1.level[-30]
                     if isinstance(keyword.value.value, ast.Name):
                         base = keyword.value.value.id
                     elif isinstance(keyword.value.value, ast.Attribute):
@@ -672,7 +718,7 @@ class AlgorithmNode:
                     else:
                         base = repr(keyword.value.value)
                     
-                    # 处理 slice
+                    # 处理 slice（支持负数索引，如 [-30]）
                     if isinstance(keyword.value.slice, ast.UnaryOp) and isinstance(keyword.value.slice.op, ast.USub):
                         if isinstance(keyword.value.slice.operand, ast.Constant):
                             lag = keyword.value.slice.operand.value
@@ -684,8 +730,10 @@ class AlgorithmNode:
                     else:
                         param_expr = f"{base}[{repr(keyword.value.slice)}]"
                 elif isinstance(keyword.value, ast.Constant):
+                    # 常量：直接转换为字符串
                     param_expr = str(keyword.value.value)
                 elif isinstance(keyword.value, ast.Num):
+                    # 数字（兼容旧版本）
                     param_expr = str(keyword.value.n)
                 else:
                     # 复杂情况，使用 repr 作为后备

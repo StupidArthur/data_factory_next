@@ -319,6 +319,37 @@ class UnifiedEngine:
             self.clock.stop()
         return results
     
+    def export_to_csv(
+        self,
+        snapshots: List[Dict[str, Any]],
+        template_name: str,
+        output_path: str | Path,
+    ) -> None:
+        """
+        使用指定模板导出数据到 CSV 文件
+        
+        Args:
+            snapshots: 快照数据列表（通常来自 run_generator 的返回值）
+            template_name: 模板名称（如 moban_1, moban_2）
+            output_path: 输出文件路径
+        """
+        try:
+            from export_templates import TemplateManager, CSVExporter
+        except ImportError:
+            raise ImportError("导出功能需要 export_templates 模块，请确保模块已正确安装")
+        
+        # 加载模板
+        template_manager = TemplateManager()
+        template = template_manager.load_template(template_name)
+        
+        # 获取采样间隔
+        sample_interval = self.config.clock.sample_interval or self.config.clock.cycle_time
+        
+        # 创建导出器并导出
+        # 注意：sample_interval 用于文档说明，实际时间从 sim_time 重新生成
+        exporter = CSVExporter(template, sample_interval=sample_interval)
+        exporter.export(snapshots, output_path)
+    
     def _step_once(self) -> Dict[str, Any]:
         """
         执行一个周期（内部方法）。
@@ -336,16 +367,32 @@ class UnifiedEngine:
             - time_str: 当前时间字符串
             - sim_time: 当前模拟时间（浮点数，秒）
         """
+        logger.debug(
+            "执行周期 %d，sim_time=%.3f，节点数=%d",
+            self.clock.cycle_count,
+            self.clock.sim_time,
+            len(self._nodes),
+        )
+        
         # 1. 计算本周期的目标时间标签（下一个采样点）
         t = self.clock.sim_time + self.config.clock.cycle_time
 
         # 2. 按顺序执行所有节点
         # 先执行算法节点，再执行表达式节点
         for node in self._nodes:
-            if isinstance(node, AlgorithmNode):
-                node.step(self.vars)
-            elif isinstance(node, ExpressionNode):
-                node.step(self.vars)
+            try:
+                if isinstance(node, AlgorithmNode):
+                    node.step(self.vars)
+                elif isinstance(node, ExpressionNode):
+                    node.step(self.vars)
+            except Exception as e:
+                logger.error(
+                    "节点执行失败: node=%s, error=%s",
+                    node.name if hasattr(node, 'name') else type(node).__name__,
+                    e,
+                    exc_info=True,
+                )
+                raise
 
         # 3. 步进时钟（内部根据模式决定是否 sleep，并记录执行时间）
         cycle_count, need_sample, time_str, exec_ratio = self.clock.step()

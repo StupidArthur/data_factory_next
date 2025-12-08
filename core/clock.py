@@ -24,6 +24,11 @@ from utils.logger import get_logger
 
 logger = get_logger()
 
+# 常量定义
+EXECUTION_TIME_WARNING_THRESHOLD = 0.6  # 执行时间警告阈值（占周期的百分比）
+LAG_SAFETY_MARGIN = 1.5  # 历史数据安全余量（用于计算 record_length）
+MIN_RECORD_LENGTH = 10  # 最小历史记录长度
+
 
 class ClockMode(Enum):
     """时钟运行模式。"""
@@ -196,7 +201,7 @@ class Clock:
         if self.config.mode is ClockMode.REALTIME and self.config.cycle_time > 0:
             exec_ratio = min(execution_time / self.config.cycle_time, 1.0)
 
-            threshold = self.config.cycle_time * 0.6
+            threshold = self.config.cycle_time * EXECUTION_TIME_WARNING_THRESHOLD
             if execution_time > threshold:
                 logger.warning(
                     "Cycle execution time (%.3fs) exceeds 60%% of cycle_time (%.3fs * 0.6 = %.3fs), "

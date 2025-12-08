@@ -17,6 +17,9 @@ from utils.logger import get_logger
 
 logger = get_logger()
 
+# 常量定义
+BATCH_INSERT_SIZE = 100  # 批量插入缓冲区大小（每N条记录批量插入一次）
+
 
 @dataclass
 class HistoryConfig:
@@ -64,7 +67,7 @@ class HistoryStorage:
         
         # 批量插入缓冲区
         self._buffer: List[Dict[str, Any]] = []
-        self._buffer_size = 100  # 每100条记录批量插入一次
+        self._buffer_size = BATCH_INSERT_SIZE
         
         logger.info(
             "HistoryStorage initialized: db_path=%s, stored_variables=%s",
@@ -214,12 +217,17 @@ class HistoryStorage:
             # 提交事务
             self._conn.commit()
             
-            logger.debug(f"Flushed {len(self._buffer)} records to database")
+            logger.debug("批量插入成功: %d 条记录", len(self._buffer))
             
             # 清空缓冲区
             self._buffer.clear()
         except Exception as e:
-            logger.error(f"Failed to flush buffer: {e}", exc_info=True)
+            logger.warning(
+                "批量插入失败: 记录数=%d, 错误=%s, 已回滚事务",
+                len(self._buffer),
+                e,
+                exc_info=True,
+            )
             self._conn.rollback()
             self._buffer.clear()
     

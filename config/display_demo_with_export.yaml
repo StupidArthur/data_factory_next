@@ -1,0 +1,46 @@
+# 带导出模板配置的示例
+cycle_time: 0.5
+sample_interval: 5.0
+start_time: 0.0
+time_format: "%Y/%m/%d %H:%M:%S"
+
+program:
+  - name: sin1
+    type: SIN
+    init_args:
+      amplitude: 100.0
+      period: 1200
+      phase: 0.0
+    expression: sin1.execute()
+  - name: valve1
+    type: VALVE
+    init_args:
+      min_opening: 0.0
+      max_opening: 100.0
+      step: 0.1
+      full_travel_time: 10.0
+    expression: valve1.execute(target_opening=sin1.out)
+  - name: non_sense_1
+    type: RANDOM
+    init_args:
+      L: 0.0
+      H: 100.0
+      max_step: 3.0
+    expression: non_sense_1.execute()
+  - name: non_sense_2
+    type: RANDOM
+    init_args:
+      L: 0.0
+      H: 100.0
+      max_step: 3.0
+    expression: non_sense_2.execute()
+  - name: non_sense_3
+    type: Variable
+    expression: non_sense_3 = non_sense_1[-30] + 2 * sqrt(non_sense_2)
+
+# 导出模板配置（可选）
+# 注意：这里只是示例，实际模板配置存储在 export_templates/templates/ 目录下
+# 可以通过模板名称（如 moban_1, moban_2）来引用
+export_template:
+  template_name: moban_1  # 模板名称，对应 export_templates/templates/moban_1.yaml
+

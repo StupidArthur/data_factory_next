@@ -30,7 +30,7 @@ class RingBuffer:
 
     def get_by_lag(self, steps: int, default: float = 0.0) -> float:
         """
-        按“步数”访问历史值。
+        按"步数"访问历史值。
 
         Args:
             steps: 滞后步数（正整数），steps=1 表示上一个周期。
@@ -42,8 +42,13 @@ class RingBuffer:
         if steps > len(self._data):
             return default
 
-        # deque[-1] 是最新值，[-steps] 是对应的历史值
-        return list(self._data)[-steps]
+        # 优化：直接使用索引访问，避免转换为列表
+        # deque 支持负索引，[-steps] 表示从末尾往前数 steps 个元素
+        try:
+            return self._data[-steps]
+        except IndexError:
+            # 如果索引超出范围，返回默认值
+            return default
 
 
 @dataclass

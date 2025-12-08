@@ -21,7 +21,7 @@ import pathlib
 
 import yaml
 
-from .clock import ClockConfig, ClockMode
+from .clock import ClockConfig, ClockMode, LAG_SAFETY_MARGIN, MIN_RECORD_LENGTH
 
 
 @dataclass
@@ -52,12 +52,14 @@ class ProgramConfig:
         program: program 列表（顺序即原始 DSL 中的顺序）。
         record_length: 历史记录长度（用于被 [-N] 访问的变量/属性）。
         lag_requirements: 需要历史数据的变量/属性及其最大 lag 步数。
+        export_template: 导出模板配置（可选）。
     """
 
     clock: ClockConfig
     program: List[ProgramItem]
     record_length: int
     lag_requirements: Dict[str, int]
+    export_template: Dict[str, Any] | None = None
 
 
 class DSLParser:
@@ -97,20 +99,24 @@ class DSLParser:
         if "record_length" in data:
             record_length = int(data.get("record_length"))
         else:
-            # 根据 lag_requirements 的最大值计算，加上 50% 的安全余量，最小为 10
+            # 根据 lag_requirements 的最大值计算，加上安全余量，最小为 MIN_RECORD_LENGTH
             max_lag = max(lag_requirements.values()) if lag_requirements else 0
             if max_lag > 0:
-                record_length = int(max_lag * 1.5)  # 50% 安全余量
-                if record_length < 10:
-                    record_length = 10  # 最小为 10
+                record_length = int(max_lag * LAG_SAFETY_MARGIN)
+                if record_length < MIN_RECORD_LENGTH:
+                    record_length = MIN_RECORD_LENGTH
             else:
-                record_length = 10  # 没有 lag 需求时，使用最小值 10
+                record_length = MIN_RECORD_LENGTH  # 没有 lag 需求时，使用最小值
 
+        # 5. 解析导出模板配置（可选）
+        export_template = data.get("export_template")
+        
         return ProgramConfig(
             clock=clock_config,
             program=program_items,
             record_length=record_length,
             lag_requirements=lag_requirements,
+            export_template=export_template,
         )
 
     # ------------------------------------------------------------------#

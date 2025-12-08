@@ -20,8 +20,42 @@ class RANDOM(BaseProgram):
     - 输出：out（当前随机值）
     """
 
+    # 文档属性（用于网页展示）
+    name = "random"
+    chinese_name = "随机数生成器"
+    doc = """
+# 随机数生成算法
+
+生成在指定范围内随机变化的数值，支持最大步进限制。
+
+## 特点
+
+- 在 [L, H] 范围内生成随机数
+- 每次变化不超过 max_step（避免突变）
+- 输出平滑的随机变化曲线
+
+## 使用示例
+
+```yaml
+- name: random1
+  type: RANDOM
+  init_args:
+    L: 0.0
+    H: 100.0
+    max_step: 3.0
+  expression: random1.execute()
+```
+"""
+    params_table = """
+| 参数名 | 含义 | 初值 |
+|--------|------|------|
+| L | 最小值，随机数的下界 | 0.0 |
+| H | 最大值，随机数的上界 | 100.0 |
+| max_step | 最大步进，每次变化不超过此值（避免突变） | 3.0 |
+"""
+
     # 需要存储的属性
-    stored_attributes = ["out"]
+    stored_attributes = ["out", "L", "H", "max_step"]
 
     # 默认参数
     default_params = {

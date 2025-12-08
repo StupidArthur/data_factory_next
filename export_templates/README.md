@@ -24,12 +24,14 @@ export_templates/
 ### 配置项说明
 
 - `name`: 模板名称（如 `moban_1`, `moban_2`）
-- `time_column_name`: 时间列名称，严格区分大小写（`timeStamp` 或 `Timestamp`）
+- `time_column_name`: 时间列名称（可以是任意字符串，如 `timeStamp`、`Timestamp`、`时间` 等）
 - `time_format`: 时间格式字符串（如 `"%Y/%m/%d %H:%M:%S"` 或 `"%Y-%m-%d %H:%M:%S"`）
 - `header_rows`: 标题行数（1 或 2）
-- `filter_sampled_only`: 是否只导出 `need_sample=True` 的数据
-- `columns`: 要导出的位号名列表（按顺序）
-- `column_descriptions`: 位号描述列表（与 `columns` 对应，空字符串则使用默认描述"某工业数据"）
+- `uppercase_column_names`: 是否将位号名转换为全大写，默认 `true`
+
+**注意**：
+- `columns` 和 `column_descriptions` 由当前运行的组态决定，不在模板中配置
+- `filter_sampled_only` 永远为 `True`，只导出采样周期的数据（`need_sample=True`）
 
 ### 示例配置
 
@@ -40,12 +42,6 @@ name: moban_1
 time_column_name: timeStamp
 time_format: "%Y/%m/%d %H:%M:%S"
 header_rows: 1
-filter_sampled_only: false
-columns:
-  - sin1.out
-  - valve1.current_opening
-  - non_sense_3
-column_descriptions: []
 ```
 
 #### 双行标题（moban_2.yaml）
@@ -55,19 +51,6 @@ name: moban_2
 time_column_name: Timestamp
 time_format: "%Y-%m-%d %H:%M:%S"
 header_rows: 2
-filter_sampled_only: true
-columns:
-  - sin1.out
-  - valve1.current_opening
-  - non_sense_3
-  - non_sense_1
-  - non_sense_2
-column_descriptions:
-  - "正弦波输出"
-  - "阀门开度"
-  - ""  # 空字符串，将使用默认描述"某工业数据"
-  - "无意义变量1"
-  - "无意义变量2"
 ```
 
 ## 使用方式
@@ -120,16 +103,17 @@ timeStamp,sin1.out,valve1.current_opening,non_sense_3
 
 ```csv
 Timestamp,sin1.out,valve1.current_opening,non_sense_3,non_sense_1,non_sense_2
-时间戳,正弦波输出,阀门开度,某工业数据,无意义变量1,无意义变量2
+时间戳,某工业数据,某工业数据,某工业数据,某工业数据,某工业数据
 2024-5-24 01:02:03,100.0,50.0,75.5,45.2,30.8
 2024-5-24 01:02:04,101.0,51.0,76.5,46.2,31.8
 ```
 
 ## 注意事项
 
-1. 时间格式从 `sim_time` 重新生成，使用模板中配置的 `time_format`
-2. 如果 `filter_sampled_only=true`，只导出 `need_sample=True` 的数据
-3. 如果 `columns` 为空，则导出所有变量（排除元数据字段）
-4. 如果 `column_descriptions` 为空字符串，则使用默认描述"某工业数据"
-5. 时间列名称严格区分大小写（`timeStamp` 或 `Timestamp`）
+1. **列由组态决定**：导出的列由当前运行的组态决定，模板只配置文件格式
+2. **只导出采样数据**：永远只导出采样周期的数据（`need_sample=True`）
+3. **时间格式**：时间格式从 `sim_time` 重新生成，使用模板中配置的 `time_format`
+4. **双行标题描述**：如果 `header_rows=2`，第二行使用默认描述"某工业数据"
+5. **时间列名称**：时间列名称可以是任意字符串，根据需求自定义（如 `timeStamp`、`Timestamp`、`时间` 等）
+6. **列名大小写**：如果 `uppercase_column_names=true`（默认），导出的列名会转换为全大写（如 `pid1.mv` → `PID1.MV`）
 

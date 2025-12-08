@@ -23,7 +23,7 @@ expression: non_sense_3 = non_sense_1[-30] + 2 * sqrt(non_sense_2)
 ```yaml
 program:
   - name: sin1
-    type: SIN
+    type: SINE_WAVE
     init_args:
       amplitude: 100.0
       period: 1200
@@ -75,7 +75,7 @@ program:
 ProgramConfig(
     clock=ClockConfig(cycle_time=0.5, mode=GENERATOR, ...),
     program=[
-        ProgramItem(name="sin1", type="SIN", expression="sin1.execute()", init_args={...}),
+        ProgramItem(name="sin1", type="SINE_WAVE", expression="sin1.execute()", init_args={...}),
         ProgramItem(name="valve1", type="VALVE", expression="valve1.execute(target_opening=sin1.out)", init_args={...}),
         ProgramItem(name="non_sense_1", type="RANDOM", expression="non_sense_1.execute()", init_args={...}),
         ProgramItem(name="non_sense_2", type="RANDOM", expression="non_sense_2.execute()", init_args={...}),
@@ -111,8 +111,8 @@ ProgramConfig(
 
 **过程**：
 1. **sin1**：
-   - 从 `InstanceRegistry` 获取 `SIN` 类
-   - 创建实例：`SIN(cycle_time=0.5, amplitude=100.0, period=1200, phase=0.0)`
+   - 从 `InstanceRegistry` 获取 `SINE_WAVE` 类
+   - 创建实例：`SINE_WAVE(cycle_time=0.5, amplitude=100.0, period=1200, phase=0.0)`
    - 存储到 `_instances["sin1"]`
 
 2. **valve1**：

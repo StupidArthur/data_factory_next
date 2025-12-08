@@ -145,11 +145,15 @@ class RealtimeDataManager:
             }
             self._redis_client.publish(self.config.pubsub_channel, json.dumps(notification))
             
-            logger.debug(
-                "Snapshot pushed to Redis: cycle_count=%d, params_count=%d",
-                snapshot.get("cycle_count", 0),
-                len(push_data["params"]),
-            )
+            # 每1000次推送输出一次统计信息（大幅减少日志频率）
+            cycle_count = snapshot.get("cycle_count", 0)
+            if cycle_count % 1000 == 0:
+                logger.info(
+                    "Snapshot pushed to Redis: cycle_count=%d, params_count=%d",
+                    cycle_count,
+                    len(push_data["params"]),
+                )
+            # 其他时候不输出日志，减少日志频率
         except redis.ConnectionError as e:
             logger.error("Redis 连接错误，推送快照失败: %s", e, exc_info=True)
             # 不抛出异常，避免影响主流程

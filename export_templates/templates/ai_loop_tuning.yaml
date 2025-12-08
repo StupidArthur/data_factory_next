@@ -1,0 +1,8 @@
+# 导出模板示例 1：单行标题
+# 注意：columns 和 column_descriptions 由当前运行的组态决定，不在模板中配置
+# filter_sampled_only 永远为 True，只导出采样周期的数据
+name: ai_loop_tuning
+time_column_name: Timestamp
+time_format: "%Y/%m/%d %H:%M:%S"
+header_rows: 1
+

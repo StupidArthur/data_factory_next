@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import List, Dict, Any, Iterable
 
-from .clock import Clock, ClockConfig, ClockMode
+from .clock import Clock, ClockConfig, ClockMode, LAG_SAFETY_MARGIN
 from .variable import VariableStore
 from .expression import ExpressionNode, ExpressionConfig, AlgorithmNode
 from .factory import InstanceFactory
@@ -148,8 +148,8 @@ class UnifiedEngine:
         # 根据 lag_requirements 配置每个变量的历史数据长度
         # 只有需要历史数据的变量才创建历史缓冲区
         for var_name, max_lag_steps in config.lag_requirements.items():
-            # 加上 50% 的安全余量
-            safe_lag_steps = int(max_lag_steps * 1.5)
+            # 加上安全余量（使用常量 LAG_SAFETY_MARGIN）
+            safe_lag_steps = int(max_lag_steps * LAG_SAFETY_MARGIN)
             engine.vars.configure_lag(var_name, safe_lag_steps)
             logger.debug(
                 "配置变量历史数据: %s, max_lag_steps=%d (需求=%d)",
@@ -166,7 +166,7 @@ class UnifiedEngine:
                 # 检查该属性是否需要历史数据
                 if var_key in config.lag_requirements:
                     max_lag_steps = config.lag_requirements[var_key]
-                    safe_lag_steps = int(max_lag_steps * 1.5)
+                    safe_lag_steps = int(max_lag_steps * LAG_SAFETY_MARGIN)
                     engine.vars.configure_lag(var_key, safe_lag_steps)
                     logger.debug(
                         "配置实例属性历史数据: %s, max_lag_steps=%d (需求=%d)",

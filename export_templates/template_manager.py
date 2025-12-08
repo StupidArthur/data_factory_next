@@ -20,7 +20,7 @@ logger = get_logger()
 # 模板配置目录（相对于模块目录）
 TEMPLATES_DIR = pathlib.Path(__file__).parent / "templates"
 
-# 默认描述
+# 默认描述（用于双行标题的第二行）
 DEFAULT_TIME_DESCRIPTION = "时间戳"
 DEFAULT_PARAM_DESCRIPTION = "某工业数据"
 
@@ -30,59 +30,28 @@ class ExportTemplate:
     """
     导出模板配置
     
+    注意：
+    - columns 和 column_descriptions 由当前运行的组态决定，不在模板中配置
+    - filter_sampled_only 永远为 True，只导出采样周期的数据
+    
     Attributes:
         name: 模板名称（如 moban_1, moban_2）
-        time_column_name: 时间列名称（严格区分大小写，如 timeStamp 或 Timestamp）
+        time_column_name: 时间列名称（可以是任意字符串，如 "timeStamp"、"Timestamp"、"时间" 等）
         time_format: 时间格式字符串（如 "%Y/%m/%d %H:%M:%S" 或 "%Y-%m-%d %H:%M:%S"）
-        columns: 要导出的位号名列表（按顺序）
-        column_descriptions: 位号描述列表（与 columns 对应，空字符串则使用默认描述）
         header_rows: 标题行数（1 或 2）
-        filter_sampled_only: 是否只导出 need_sample=True 的数据
+        uppercase_column_names: 是否将位号名转换为全大写，默认 True
     """
     
     name: str
     time_column_name: str = "timeStamp"
     time_format: str = "%Y/%m/%d %H:%M:%S"
-    columns: List[str] = field(default_factory=list)
-    column_descriptions: List[str] = field(default_factory=list)
     header_rows: int = 1
-    filter_sampled_only: bool = False
+    uppercase_column_names: bool = True
     
     def __post_init__(self) -> None:
         """验证配置有效性"""
         if self.header_rows not in [1, 2]:
             raise ValueError(f"header_rows must be 1 or 2, got {self.header_rows}")
-        
-        if self.header_rows == 2 and len(self.column_descriptions) != len(self.columns):
-            # 如果配置了双行标题，但描述数量不匹配，自动补齐
-            if len(self.column_descriptions) < len(self.columns):
-                # 补齐默认描述
-                self.column_descriptions.extend(
-                    [""] * (len(self.columns) - len(self.column_descriptions))
-                )
-        
-        # 确保时间列名称严格区分大小写
-        if self.time_column_name not in ["timeStamp", "Timestamp"]:
-            logger.warning(
-                "time_column_name should be 'timeStamp' or 'Timestamp', got '%s'",
-                self.time_column_name
-            )
-    
-    def get_column_description(self, index: int) -> str:
-        """
-        获取指定索引的列描述
-        
-        Args:
-            index: 列索引（不包括时间列）
-            
-        Returns:
-            列描述，如果为空字符串则返回默认描述
-        """
-        if index >= len(self.column_descriptions):
-            return DEFAULT_PARAM_DESCRIPTION
-        
-        desc = self.column_descriptions[index]
-        return desc if desc else DEFAULT_PARAM_DESCRIPTION
 
 
 class TemplateManager:
@@ -140,7 +109,7 @@ class TemplateManager:
             # 缓存模板
             self._templates[name] = template
             
-            logger.info("模板加载成功: name=%s, columns=%d", name, len(template.columns))
+            logger.info("模板加载成功: name=%s, header_rows=%d", name, template.header_rows)
             return template
             
         except Exception as e:
@@ -160,27 +129,23 @@ class TemplateManager:
         """
         time_column_name = data.get("time_column_name", "timeStamp")
         time_format = data.get("time_format", "%Y/%m/%d %H:%M:%S")
-        columns = data.get("columns", [])
-        column_descriptions = data.get("column_descriptions", [])
         header_rows = data.get("header_rows", 1)
-        filter_sampled_only = data.get("filter_sampled_only", False)
+        uppercase_column_names = data.get("uppercase_column_names", True)
         
-        # 验证 columns 是列表
-        if not isinstance(columns, list):
-            raise ValueError(f"columns must be a list, got {type(columns)}")
-        
-        # 验证 column_descriptions 是列表
-        if not isinstance(column_descriptions, list):
-            raise ValueError(f"column_descriptions must be a list, got {type(column_descriptions)}")
+        # 忽略旧配置项（向后兼容，但不使用）
+        if "columns" in data:
+            logger.warning("模板配置中的 'columns' 将被忽略，列由当前运行的组态决定")
+        if "column_descriptions" in data:
+            logger.warning("模板配置中的 'column_descriptions' 将被忽略")
+        if "filter_sampled_only" in data:
+            logger.warning("模板配置中的 'filter_sampled_only' 将被忽略，永远只导出采样周期的数据")
         
         return ExportTemplate(
             name=name,
             time_column_name=time_column_name,
             time_format=time_format,
-            columns=columns,
-            column_descriptions=column_descriptions,
             header_rows=header_rows,
-            filter_sampled_only=filter_sampled_only,
+            uppercase_column_names=uppercase_column_names,
         )
     
     def list_templates(self) -> List[str]:

@@ -1,6 +1,6 @@
 program:
   - name: sin1
-    type: SIN
+    type: SINE_WAVE
     init_args:
       amplitude: 100.0
       period: 1200

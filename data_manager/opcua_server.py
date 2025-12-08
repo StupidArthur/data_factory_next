@@ -43,7 +43,7 @@ class OPCUAServerConfig:
     redis_db: int = 0
     redis_password: Optional[str] = None
     pubsub_channel: str = "data_factory"
-    update_cycle: float = 0.1
+    update_cycle: float = 1.0  # 降低更新频率到1秒，减少性能开销
 
 
 class OPCUAServer:
@@ -117,11 +117,17 @@ class OPCUAServer:
         self.server = Server()
         await self.server.init()
         
-        # 设置端点
+        # 设置端点（允许匿名连接）
+        # asyncua 默认会创建一个端点，但我们需要确保配置正确
+        # 设置端点URL
         self.server.set_endpoint(self.config.server_url)
         
         # 设置服务器名称
         self.server.set_server_name("Data Factory OPCUA Server")
+        
+        # 注意：asyncua 默认允许 NoSecurity（无安全策略）连接
+        # 这允许标准客户端匿名连接，无需证书
+        # 在生产环境中应该配置带安全策略的连接
         
         # 注册命名空间
         uri = "http://data_factory.opcua"
@@ -132,9 +138,10 @@ class OPCUAServer:
         objects = self.server.get_objects_node()
         
         # 创建根文件夹
+        # add_folder(nodeid, bname) - nodeid 使用命名空间索引和字符串ID
+        node_id = ua.NodeId("DataFactory", self.namespace_idx)
         root_folder = await objects.add_folder(
-            self.namespace_idx,
-            "DataFactory",
+            node_id,
             "DataFactory"
         )
         
@@ -151,66 +158,100 @@ class OPCUAServer:
             param_name: 位号名（如 "tank1.level"）
             initial_value: 初始值
         """
+        # 检查节点是否已在映射中
+        if param_name in self.node_map:
+            return
+        
+        # 先尝试从 OPCUA Server 中获取已存在的节点
         try:
-            # 使用位号名作为节点的所有标识
-            # name、display_name、browse_name、node_id 都使用位号名
-            
-            # 创建字符串类型的 NodeId（使用位号名）
             node_id = ua.NodeId(param_name, self.namespace_idx)
-            
-            # 创建变量节点
+            var_node = await self._root_folder.get_child([param_name])
+            if var_node:
+                # 节点已存在，添加到映射中
+                self.node_map[param_name] = var_node
+                self.node_type_map[param_name] = ua.VariantType.Double
+                return
+        except Exception:
+            # 节点不存在，继续创建
+            pass
+        
+        # 创建新节点
+        try:
+            node_id = ua.NodeId(param_name, self.namespace_idx)
             var_node = await self._root_folder.add_variable(
-                node_id,  # NodeId（使用位号名）
-                param_name,  # BrowseName（使用位号名）
+                node_id,
+                param_name,
                 ua.Variant(initial_value, ua.VariantType.Double)
             )
-            
-            # 设置 DisplayName（使用位号名）
             await var_node.set_display_name(ua.LocalizedText(param_name))
-            
-            # 设置节点为只读
             await var_node.set_writable(False)
             
-            # 存储节点映射
             self.node_map[param_name] = var_node
             self.node_type_map[param_name] = ua.VariantType.Double
-            
-            logger.debug(f"Created OPCUA node: {param_name} (node_id={node_id})")
         except Exception as e:
-            logger.error(f"Failed to create node {param_name}: {e}", exc_info=True)
+            error_msg = str(e).lower()
+            if "already exists" in error_msg or "duplicate" in error_msg:
+                # 节点已存在，再次尝试获取
+                try:
+                    var_node = await self._root_folder.get_child([param_name])
+                    if var_node:
+                        self.node_map[param_name] = var_node
+                        self.node_type_map[param_name] = ua.VariantType.Double
+                except Exception:
+                    pass
+            else:
+                logger.error(f"Failed to create node {param_name}: {e}")
     
     async def _update_nodes(self, params: Dict[str, Any]) -> None:
         """
-        更新 OPCUA 节点值
+        更新 OPCUA 节点值（批量更新）
         
         Args:
             params: 参数字典，key 为位号名，value 为参数值
         """
+        # 先批量创建缺失的节点
+        nodes_to_create = []
         for param_name, param_value in params.items():
+            if param_name not in self.node_map:
+                nodes_to_create.append((param_name, param_value))
+        
+        if nodes_to_create:
+            for param_name, param_value in nodes_to_create:
+                try:
+                    await self._create_node(
+                        param_name,
+                        float(param_value) if isinstance(param_value, (int, float)) else 0.0
+                    )
+                except Exception as e:
+                    logger.error(f"Failed to create node {param_name}: {e}")
+            
+            # 移除创建节点的日志输出，减少日志频率
+        
+        # 批量更新节点值（使用并发更新提高性能）
+        update_tasks = []
+        for param_name, param_value in params.items():
+            node = self.node_map.get(param_name)
+            if node is None:
+                continue
+            
+            if isinstance(param_value, (int, float)):
+                variant_type = self.node_type_map.get(param_name, ua.VariantType.Double)
+                update_tasks.append(
+                    node.write_value(ua.Variant(float(param_value), variant_type))
+                )
+        
+        # 并发更新所有节点值
+        if update_tasks:
             try:
-                # 如果节点不存在，创建它
-                if param_name not in self.node_map:
-                    await self._create_node(param_name, float(param_value) if isinstance(param_value, (int, float)) else 0.0)
-                
-                # 获取节点
-                node = self.node_map.get(param_name)
-                if node is None:
-                    continue
-                
-                # 只更新数值类型
-                if isinstance(param_value, (int, float)):
-                    # 获取节点类型
-                    variant_type = self.node_type_map.get(param_name, ua.VariantType.Double)
-                    
-                    # 更新节点值
-                    await node.write_value(ua.Variant(float(param_value), variant_type))
-                    
-                    logger.debug(f"Updated node {param_name} = {param_value}")
+                await asyncio.gather(*update_tasks, return_exceptions=True)
             except Exception as e:
-                logger.error(f"Failed to update node {param_name}: {e}", exc_info=True)
+                logger.error(f"Error in batch update: {e}")
     
     async def _update_loop(self) -> None:
         """更新循环（从 Redis 读取数据并更新 OPCUA 节点）"""
+        update_count = 0
+        no_data_count = 0
+        
         while self._running:
             try:
                 cycle_start_time = time.time()
@@ -224,10 +265,33 @@ class OPCUAServer:
                         data = json.loads(json_data)
                         params = data.get("params", {})
                         
-                        # 更新 OPCUA 节点
-                        await self._update_nodes(params)
+                        if params:
+                            # 更新 OPCUA 节点
+                            await self._update_nodes(params)
+                            update_count += 1
+                            
+                            # 每1000次更新输出一次统计信息（大幅减少日志频率）
+                            if update_count % 1000 == 0:
+                                logger.info(
+                                    f"Update loop: updated {update_count} times, "
+                                    f"total nodes: {len(self.node_map)}, "
+                                    f"params in Redis: {len(params)}"
+                                )
+                        else:
+                            # 只在第一次遇到时输出警告
+                            if no_data_count == 0:
+                                logger.warning("Redis data has no 'params' field")
+                                logger.debug(f"Redis data keys: {list(data.keys())}")
                     except json.JSONDecodeError as e:
                         logger.error(f"Failed to parse JSON data from Redis: {e}")
+                else:
+                    no_data_count += 1
+                    # 每1000次无数据输出一次警告（大幅减少日志频率）
+                    if no_data_count % 1000 == 0:
+                        logger.warning(
+                            f"No data in Redis (key: {redis_key}) for {no_data_count} cycles. "
+                            f"Make sure RealtimeDataManager is enabled in the engine."
+                        )
                 
                 # 计算执行时间
                 cycle_time = time.time() - cycle_start_time
@@ -237,9 +301,11 @@ class OPCUAServer:
                 if sleep_time > 0:
                     await asyncio.sleep(sleep_time)
                 else:
-                    logger.warning(
-                        f"Update cycle time ({cycle_time:.4f}s) exceeds cycle time ({self.config.update_cycle}s)"
-                    )
+                    # 只在第一次超时时输出警告
+                    if update_count == 1:
+                        logger.warning(
+                            f"Update cycle time ({cycle_time:.4f}s) exceeds cycle time ({self.config.update_cycle}s)"
+                        )
             except Exception as e:
                 logger.error(f"Error in update loop: {e}", exc_info=True)
                 await asyncio.sleep(self.config.update_cycle)
@@ -251,6 +317,8 @@ class OPCUAServer:
         
         logger.info(f"Subscribed to Redis Pub/Sub channel: {self.config.pubsub_channel}")
         
+        notification_count = 0
+        
         try:
             while self._running:
                 try:
@@ -258,6 +326,7 @@ class OPCUAServer:
                     message = pubsub.get_message(timeout=0.1)
                     
                     if message and message["type"] == "message":
+                        notification_count += 1
                         # 收到更新通知，立即从 Redis 读取最新数据
                         redis_key = f"{self.REDIS_KEY_PREFIX}:current"
                         json_data = self.redis_client.get(redis_key)
@@ -267,10 +336,12 @@ class OPCUAServer:
                                 data = json.loads(json_data)
                                 params = data.get("params", {})
                                 
-                                # 更新 OPCUA 节点
+                                # 更新 OPCUA 节点（不输出日志，减少日志频率）
                                 await self._update_nodes(params)
                                 
-                                logger.debug(f"Updated nodes from Pub/Sub notification")
+                                # 每1000次通知输出一次日志（大幅减少日志频率）
+                                if notification_count % 1000 == 0:
+                                    logger.debug(f"Received {notification_count} Pub/Sub notifications")
                             except json.JSONDecodeError as e:
                                 logger.error(f"Failed to parse JSON data from Redis: {e}")
                     
@@ -288,6 +359,14 @@ class OPCUAServer:
             # 启动服务器
             await self.server.start()
             logger.info(f"OPCUA Server started at {self.config.server_url}")
+            
+            # 输出端点信息，方便客户端连接
+            endpoints = await self.server.get_endpoints()
+            logger.info("Available endpoints:")
+            for endpoint in endpoints:
+                logger.info(f"  - {endpoint.EndpointUrl}")
+                logger.info(f"    Security Policy: {endpoint.SecurityPolicyUri}")
+                logger.info(f"    Security Mode: {endpoint.SecurityMode}")
             
             # 启动更新任务
             self._update_task = asyncio.create_task(self._update_loop())

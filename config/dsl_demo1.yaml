@@ -11,7 +11,7 @@ program:
       td: 0.15
     expression: pid1.execute(pv=tank1.level, sv=sin1.out)
   - name: sin1
-    type: SIN
+    type: SINE_WAVE
     init_args:
       amplitude: 100.0
       period: 1200
@@ -51,5 +51,5 @@ program:
     expression: non_sense_3 = non_sense_1[-30] + 2 * non_sense_2
   - name: non_sense_4
     type: Variable
-    expression: non_sense_4 = sin(non_sense_3, 3600, 0)
+    expression: non_sense_4 = sin(non_sense_3)
     

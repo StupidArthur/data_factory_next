@@ -15,7 +15,7 @@ program:
 ### 2.1 实例类型分类
 
 #### A. 算法/模型类型（有状态实例）
-- **类型**：`PID`, `SIN`, `CYLINDRICAL_TANK`, `VALVE`, `RANDOM` 等
+- **类型**：`PID`, `SINE_WAVE`, `SQUARE_WAVE`, `TRIANGLE_WAVE`, `LIST_WAVE`, `CYLINDRICAL_TANK`, `VALVE`, `RANDOM` 等
 - **特点**：
   - 必须有 `init_args`（初始化参数）
   - `expression` 格式：`<instance_name>.execute(...)`
@@ -72,7 +72,7 @@ expression: non_sense_4 = sin(non_sense_3, 3600, 0)
 ### 2.4 实例初始化
 
 - `init_args` 中的参数会传递给实例的构造函数
-- 不同实例类型有不同的参数集合（如 PID 有 `kp`, `ti`, `td`，Tank 有 `height`, `radius`）
+- 不同实例类型有不同的参数集合（如 PID 有 `pb`, `ti`, `td`，Tank 有 `height`, `radius`）
 
 ## 三、设计优势
 
@@ -155,7 +155,7 @@ expression: non_sense_4 = sin(non_sense_3, 3600, 0)
    
    # 正确示例：
    - name: sin1
-     type: SIN
+     type: SINE_WAVE
      init_args:
        amplitude: 100.0
        period: 3600

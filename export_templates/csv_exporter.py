@@ -41,9 +41,8 @@ class CSVExporter:
         self.sample_interval = sample_interval or 1.0  # 默认 1 秒
         
         logger.info(
-            "CSVExporter initialized: template=%s, columns=%d, header_rows=%d, sample_interval=%.3f",
+            "CSVExporter initialized: template=%s, header_rows=%d, sample_interval=%.3f",
             template.name,
-            len(template.columns),
             template.header_rows,
             self.sample_interval,
         )
@@ -100,44 +99,31 @@ class CSVExporter:
     
     def _filter_snapshots(self, snapshots: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
-        过滤快照数据
+        过滤快照数据（永远只导出采样周期的数据）
         
         Args:
             snapshots: 原始快照列表
             
         Returns:
-            过滤后的快照列表
+            过滤后的快照列表（只包含 need_sample=True 的数据）
         """
-        if self.template.filter_sampled_only:
-            return [s for s in snapshots if s.get("need_sample", False)]
-        return snapshots
+        # 永远只导出采样周期的数据
+        return [s for s in snapshots if s.get("need_sample", False)]
     
     def _determine_columns(self, sample_snapshot: Dict[str, Any]) -> List[str]:
         """
-        确定要导出的列
+        确定要导出的列（从快照数据中自动获取所有变量）
         
         Args:
             sample_snapshot: 示例快照（用于获取所有可用的位号名）
             
         Returns:
-            要导出的列名列表（不包括时间列）
+            要导出的列名列表（不包括时间列），按快照中的顺序
         """
-        if self.template.columns:
-            # 使用配置的列列表
-            # 验证列是否存在
-            available_keys = set(sample_snapshot.keys()) - METADATA_FIELDS
-            columns = []
-            for col in self.template.columns:
-                if col in available_keys:
-                    columns.append(col)
-                else:
-                    logger.warning("位号不存在，跳过: %s", col)
-            return columns
-        else:
-            # 使用快照中的所有变量（排除元数据）
-            columns = [k for k in sample_snapshot.keys() if k not in METADATA_FIELDS]
-            # 按原始顺序排序（Python 3.7+ 字典保持插入顺序）
-            return columns
+        # 从快照数据中自动获取所有变量（排除元数据）
+        columns = [k for k in sample_snapshot.keys() if k not in METADATA_FIELDS]
+        # 按原始顺序排序（Python 3.7+ 字典保持插入顺序）
+        return columns
     
     def _write_header(self, writer: csv.writer, columns: List[str]) -> None:
         """
@@ -147,16 +133,20 @@ class CSVExporter:
             writer: CSV writer 对象
             columns: 要导出的列名列表
         """
+        # 如果配置了将列名转换为大写，则转换
+        if self.template.uppercase_column_names:
+            display_columns = [col.upper() for col in columns]
+        else:
+            display_columns = columns
+        
         # 第一行标题
-        header_row = [self.template.time_column_name] + columns
+        header_row = [self.template.time_column_name] + display_columns
         writer.writerow(header_row)
         
         # 第二行描述（如果需要）
         if self.template.header_rows == 2:
-            description_row = [DEFAULT_TIME_DESCRIPTION]
-            for i, col in enumerate(columns):
-                desc = self.template.get_column_description(i)
-                description_row.append(desc)
+            # 第二行使用默认描述
+            description_row = [DEFAULT_TIME_DESCRIPTION] + [DEFAULT_PARAM_DESCRIPTION] * len(columns)
             writer.writerow(description_row)
     
     def _write_data_rows(

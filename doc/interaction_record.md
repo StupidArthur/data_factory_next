@@ -210,7 +210,7 @@
   - **DSL 规则总结**：
     - 顶层结构：`program` 列表，每个元素包含 `name`, `type`, `init_args`（可选）, `expression`。
     - 类型分类：
-      - 算法/模型类型（有状态）：`PID`, `SIN`, `CYLINDRICAL_TANK`, `VALVE`, `RANDOM` 等，必须有 `init_args`，expression 格式为 `instance.execute(...)`。
+      - 算法/模型类型（有状态）：`PID`, `SINE_WAVE`, `SQUARE_WAVE`, `TRIANGLE_WAVE`, `LIST_WAVE`, `CYLINDRICAL_TANK`, `VALVE`, `RANDOM` 等，必须有 `init_args`，expression 格式为 `instance.execute(...)`。
       - 变量类型（无状态）：`Variable`，无 `init_args`，expression 格式为 `variable_name = expression`。
     - 表达式语法：
       - 方法调用：`pid1.execute(pv=tank1.level, sv=sin1.out)`。
@@ -225,7 +225,7 @@
     5. 初始化优先级：DSL `init_args` > Class default 值。
     6. 函数调用：expression 中除了实例化的算法，还可以临时调用无状态的函数（如 `abs`, `sqrt`），这些函数也会包含在算法库中。
   - **需要修正的 DSL 示例**：
-    - `sin(non_sense_3, 3600, 0)` 这种写法不好，应该改成 `type: SIN` 的实例化算法。
+    - `sin(non_sense_3, 3600, 0)` 这种写法不好，应该改成 `type: SINE_WAVE` 的实例化算法。
     - 无状态函数（如 `abs`, `sqrt`）可以在 Variable 类型的表达式中直接调用。
 
 - **4. Cursor 本次交互后的操作概述**
@@ -726,4 +726,422 @@
 
 ---
 
+## 2025-12-08（项目代码全面评审）
+
+- **1. 当前时间**
+  - 2025-12-08 09:20:24
+
+- **2. 我的原始需求**
+  - 评审一下项目的全部代码和配置文件
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **评审范围**：
+    - 核心模块（core/）：clock.py、variable.py、expression.py、engine.py、factory.py、instance.py、parser.py
+    - 程序模块（programs/）：base.py、pid.py、sin.py 等
+    - 数据管理模块（data_manager/）：realtime_manager.py、history_storage.py、run_opcua_server.py
+    - 工具模块（utils/）：logger.py、export_helper.py
+    - 函数模块（functions/）：math_functions.py
+    - 导出模块（export_templates/）：template_manager.py
+    - 入口脚本：debug_display.py、run_debug.py
+    - 配置文件：display_demo.yaml 等
+  - **评审标准**：
+    - 架构设计（模块化、可复用性、参数化）
+    - 代码注释（详尽性）
+    - 日志系统
+    - 参数化设计（魔法数字、文件名参数化）
+    - 代码质量（错误处理、类型注解）
+    - 入口代码不使用命令行参数
+
+- **4. Cursor 本次交互后的操作概述**
+  - **全面评审代码**：
+    - 系统检查所有模块的代码质量、架构设计、注释完整性
+    - 检查魔法数字、异常处理、类型注解、日志记录等
+    - 检查入口代码是否使用命令行参数
+  - **生成评审报告**：
+    - 创建 `doc/代码评审报告.md`，包含：
+      - 总体评价（优点和需要改进的地方）
+      - 详细评审结果（每个模块的状态和问题）
+      - 发现的问题汇总（高/中/低优先级）
+      - 改进建议
+      - 代码质量评分（各模块评分和总体评分）
+      - 总结
+  - **修复发现的问题**：
+    - 修复 `core/engine.py` 中的魔法数字问题（第152行、第169行）
+    - 将 `1.5` 替换为 `LAG_SAFETY_MARGIN` 常量
+    - 添加导入：`from .clock import LAG_SAFETY_MARGIN`
+  - **评审结果**：
+    - 总体评分：89.2/100（优秀）
+    - 主要优点：
+      - 架构设计清晰，模块职责明确
+      - 代码注释详尽，文档完善
+      - 日志系统完善，支持多级别日志
+      - 入口代码规范，无命令行参数
+      - 类型注解完善，代码可读性强
+      - 相对导入规范，符合 Python 包结构
+    - 主要问题：
+      - 仅发现一处魔法数字未完全消除（已修复）
+
+---
+
+## 2025-12-08（简化导出模板配置）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 导出模板里面，不需要配置 columns 和 description。这个是有当前运行的组态决定的，导出模板只负责配置导出的文件格式。filter_sampled_only 也不需要配置，永远就是按照采样周期来输出数据。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **简化导出模板配置**：
+    - 移除 `columns` 配置项：列由当前运行的组态决定，从快照数据中自动获取
+    - 移除 `column_descriptions` 配置项：不再配置列描述
+    - 移除 `filter_sampled_only` 配置项：永远只导出采样周期的数据（`need_sample=True`）
+  - **保留的配置项**：
+    - `name`: 模板名称
+    - `time_column_name`: 时间列名称
+    - `time_format`: 时间格式字符串
+    - `header_rows`: 标题行数（1 或 2）
+  - **修改逻辑**：
+    - `CSVExporter._filter_snapshots()`: 永远只导出 `need_sample=True` 的数据
+    - `CSVExporter._determine_columns()`: 从快照数据中自动获取所有变量（排除元数据）
+    - `CSVExporter._write_header()`: 双行标题时，第二行使用默认描述"某工业数据"
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `export_templates/template_manager.py`**：
+    - 修改 `ExportTemplate` 类，移除 `columns`、`column_descriptions`、`filter_sampled_only` 字段
+    - 移除 `get_column_description()` 方法
+    - 简化 `__post_init__()` 方法，移除列相关的验证逻辑
+    - 修改 `_parse_template()` 方法，移除列相关配置的解析，添加向后兼容警告
+    - 更新日志输出，移除列数量信息
+  - **修改 `export_templates/csv_exporter.py`**：
+    - 修改 `_filter_snapshots()` 方法，永远只导出 `need_sample=True` 的数据
+    - 修改 `_determine_columns()` 方法，从快照数据中自动获取所有变量
+    - 修改 `_write_header()` 方法，双行标题时使用默认描述
+    - 更新初始化日志，移除列数量信息
+  - **更新模板文件**：
+    - 更新 `export_templates/templates/moban_1.yaml`，移除不需要的配置项
+    - 更新 `export_templates/templates/moban_2.yaml`，移除不需要的配置项
+    - 添加注释说明配置项的变化
+  - **更新文档**：
+    - 更新 `export_templates/README.md`，移除 `columns`、`column_descriptions`、`filter_sampled_only` 的说明
+    - 更新示例配置，只保留文件格式相关的配置
+    - 更新注意事项，说明列由组态决定、永远只导出采样数据
+  - **验证**：
+    - 所有修改通过语法检查
+    - 无 linter 错误
+    - 代码逻辑正确，符合需求
+
+---
+
+## 2025-12-08（实现数据绘图工具）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 在tools目录下，实现一个导出数据的绘图工具，使用pyqt6实现。最上方是选择数据文件和选择导出模板（用名字）。然后左侧是list，每一行是一个checkbox+位号名，然后最下方有一个绘制按钮。当点击按钮时，在右侧绘制checkbox选中的那些位号的曲线图。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **界面布局**：
+    - 顶部区域：数据文件选择（文件选择按钮 + 文件路径显示）、导出模板选择（下拉框，显示模板名称）
+    - 左侧区域：位号列表（QListWidget，每个item包含checkbox + 位号名）
+    - 右侧区域：绘图区域（使用matplotlib的FigureCanvas）
+    - 底部区域：绘制按钮（居中显示）
+  - **功能需求**：
+    - 数据文件选择：支持选择CSV文件，根据模板配置解析文件（支持单行/双行标题）
+    - 模板选择：从TemplateManager获取模板列表，选择模板后应用配置（header_rows、time_column_name等）
+    - 位号列表：从CSV文件中提取所有位号（排除时间列），每个位号显示为可勾选的列表项
+    - 绘图功能：根据选中的位号，在右侧绘制曲线图，支持多个位号同时显示
+  - **技术实现**：
+    - 使用PyQt6实现GUI界面
+    - 使用matplotlib进行数据可视化
+    - 使用pandas读取CSV文件
+    - 集成TemplateManager获取模板配置
+    - 支持单行标题和双行标题的CSV文件解析
+
+- **4. Cursor 本次交互后的操作概述**
+  - **创建tools目录**：
+    - 新建 `tools/` 目录
+    - 新建 `tools/__init__.py` 模块初始化文件
+  - **实现绘图工具**：
+    - 新建 `tools/data_plotter.py`，实现 `DataPlotterWindow` 类：
+      - `_create_ui()`: 创建UI界面，包含顶部、左侧、右侧、底部四个区域
+      - `_create_top_area()`: 创建顶部区域（文件选择 + 模板选择）
+      - `_create_left_area()`: 创建左侧区域（位号列表）
+      - `_create_right_area()`: 创建右侧区域（matplotlib绘图区域）
+      - `_create_bottom_area()`: 创建底部区域（绘制按钮）
+      - `_load_template_list()`: 从TemplateManager加载模板列表
+      - `_select_data_file()`: 选择数据文件对话框
+      - `_load_data_file()`: 根据模板配置加载CSV文件，提取位号列表
+      - `_on_template_selected()`: 模板选择事件处理
+      - `_plot_selected_tags()`: 绘制选中位号的曲线图
+    - 实现 `run_plotter()` 入口函数，使用函数参数方式传参（符合项目规范）
+  - **更新依赖**：
+    - 更新 `requirements.txt`，添加 `PyQt6>=6.0.0` 和 `matplotlib>=3.7.0`
+  - **功能特点**：
+    - 支持单行标题和双行标题的CSV文件解析
+    - 根据模板配置自动识别时间列名和header_rows
+    - 位号列表使用QListWidget的checkable items，界面简洁
+    - 绘图支持多个位号同时显示，自动添加图例和网格
+    - 时间列支持字符串和datetime格式，自动转换
+    - 完善的错误处理和日志记录
+  - **验证**：
+    - 代码通过语法检查，无linter错误
+    - 代码符合项目规范（函数参数传参、详细注释、日志记录）
+
+---
+
+## 2025-12-08（为工具添加署名）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 按照user rules中的内容，给两个工具都加一下署名
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **需求分析**：
+    - 根据user rules第6条：涉及到带UI界面的工具开发的，需要在界面的右下角添加"designed by @yuzechao"
+    - 需要为两个工具添加署名：
+      - `tools/data_plotter.py`：数据绘图工具
+      - `tools/data_plotter_pro.py`：数据绘图工具（增强版）
+  - **实现方案**：
+    - 在界面右下角添加QLabel显示"designed by @yuzechao"
+    - 设置样式：灰色文字、小字体、适当内边距
+    - 使用布局管理器确保署名显示在右下角
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `tools/data_plotter.py`**：
+    - 在 `_create_bottom_area()` 方法中，在底部布局的右侧添加署名标签
+    - 使用 `QLabel` 显示"designed by @yuzechao"
+    - 设置样式：灰色文字、10px字体、5px内边距
+    - 使用 `addStretch()` 确保署名显示在右侧
+  - **修改 `tools/data_plotter_pro.py`**：
+    - 在 `_create_right_area()` 方法中，在滚动条区域下方添加署名
+    - 创建水平布局，左侧显示范围信息，右侧显示署名
+    - 使用 `addStretch()` 确保署名显示在右侧
+    - 署名样式与 `data_plotter.py` 保持一致
+  - **验证**：
+    - 代码通过语法检查
+    - 署名正确显示在界面右下角
+    - 样式符合要求（灰色、小字体）
+
+---
+
+## 2025-12-08（PID参数kp改为pb）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 把PID的参数kp改成pb，逻辑不变。内部和展示都改掉。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **需求分析**：
+    - 将PID控制算法中的参数名从`kp`（比例系数）改为`pb`（比例带）
+    - 逻辑保持不变，只是参数名称的修改
+    - 需要修改所有相关的地方：代码实现、注释、文档
+  - **修改范围**：
+    - `programs/pid.py`：参数名、属性名、注释
+    - `programs/base.py`：注释中的示例
+    - `doc/dsl_rules.md`：文档中的参数说明
+    - `doc/expression模块设计文档.md`：文档中的示例代码
+    - `doc/实现设计.md`：文档中的示例代码
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `programs/pid.py`**：
+    - 将`stored_attributes`中的`"kp"`改为`"pb"`
+    - 将`default_params`中的`"kp"`改为`"pb"`
+    - 将注释中的"kp（比例系数）"改为"pb（比例带）"
+    - 将代码中所有`self.kp`改为`self.pb`（比例项、积分项、微分项的计算）
+  - **修改 `programs/base.py`**：
+    - 将注释示例中的`{"kp": 12.0, ...}`改为`{"pb": 12.0, ...}`
+  - **修改文档**：
+    - `doc/dsl_rules.md`：将参数说明中的`kp`改为`pb`
+    - `doc/expression模块设计文档.md`：将示例代码中的`kp=1.0`改为`pb=1.0`，并修正其他参数
+    - `doc/实现设计.md`：将示例代码中所有`kp`改为`pb`，包括`stored_attributes`、`default_params`和计算逻辑
+  - **验证**：
+    - 代码通过语法检查，无linter错误
+    - 所有相关文件已更新
+    - 逻辑保持不变，只是参数名称修改
+
+---
+
+## 2025-12-08（波形生成器重构和扩展）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 把program中的sin SIN改成sine_wave SINE_WAVE
+  - 然后再增加方波和三角波 square_wave和triangle_wave
+  - 然后再加一个list_wave，这里的init设计为[(v1, t1), (v2, t2), (v3, t3), ...]然后循环播放。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **重命名SIN为SINE_WAVE**：
+    - 将`programs/sin.py`重命名为`programs/sine_wave.py`
+    - 将类名`SIN`改为`SINE_WAVE`
+    - 更新所有引用和注册
+  - **新增方波生成器**：
+    - 创建`programs/square_wave.py`
+    - 实现`SQUARE_WAVE`类
+    - 参数：amplitude（振幅）、period（周期）、phase（相位偏移）
+    - 输出：前半个周期为amplitude，后半个周期为-amplitude
+  - **新增三角波生成器**：
+    - 创建`programs/triangle_wave.py`
+    - 实现`TRIANGLE_WAVE`类
+    - 参数：amplitude（振幅）、period（周期）、phase（相位偏移）
+    - 输出：从-amplitude线性增长到amplitude，然后线性下降回-amplitude
+  - **新增列表波生成器**：
+    - 创建`programs/list_wave.py`
+    - 实现`LIST_WAVE`类
+    - init_args格式：`wave_list = [(v1, t1), (v2, t2), (v3, t3), ...]`
+    - 其中v是值，t是该值持续的时间（秒）
+    - 播放完整个列表后，循环从头开始
+  - **更新配置和文档**：
+    - 更新所有配置文件中的`SIN`引用为`SINE_WAVE`
+    - 更新文档中的相关说明
+
+- **4. Cursor 本次交互后的操作概述**
+  - **创建新的波形生成器文件**：
+    - 创建`programs/sine_wave.py`：将`SIN`类改为`SINE_WAVE`类，逻辑保持不变
+    - 创建`programs/square_wave.py`：实现方波生成器，支持amplitude、period、phase参数
+    - 创建`programs/triangle_wave.py`：实现三角波生成器，支持amplitude、period、phase参数
+    - 创建`programs/list_wave.py`：实现列表波生成器，支持wave_list参数（列表格式）
+  - **更新`programs/__init__.py`**：
+    - 移除`SIN`的导入和注册
+    - 添加`SINE_WAVE`、`SQUARE_WAVE`、`TRIANGLE_WAVE`、`LIST_WAVE`的导入和注册
+    - 更新`__all__`列表
+  - **更新配置文件**：
+    - `config/dsl_demo1.yaml`：将`type: SIN`改为`type: SINE_WAVE`
+    - `config/display_demo.yaml`：将`type: SIN`改为`type: SINE_WAVE`
+    - `config/display_demo_with_export.yaml`：将`type: SIN`改为`type: SINE_WAVE`
+  - **删除旧文件**：
+    - 删除`programs/sin.py`（已重命名为sine_wave.py）
+  - **更新文档**：
+    - `doc/实现设计.md`：更新算法说明，添加新波形生成器的说明
+    - `doc/dsl_rules.md`：更新类型列表，添加新的波形生成器类型
+    - `doc/interaction_record.md`：更新历史记录中的SIN引用
+    - `doc/Expression解析和执行流程示例.md`：更新示例中的SIN引用
+  - **功能特点**：
+    - `SINE_WAVE`：正弦波生成，逻辑与原SIN完全相同
+    - `SQUARE_WAVE`：方波生成，前半个周期为amplitude，后半个周期为-amplitude
+    - `TRIANGLE_WAVE`：三角波生成，从-amplitude线性增长到amplitude，然后线性下降
+    - `LIST_WAVE`：列表波生成，根据配置的列表值和时间点循环播放，支持任意波形模式
+  - **验证**：
+    - 代码通过语法检查，无linter错误
+    - 所有新算法已正确注册
+    - 配置文件已更新
+
+---
+
+## 2025-12-08（为算法和函数添加文档属性）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 后面我可能需要将我的program和function做网页上的展示，但我不想在网站前端做硬编码，所以最好是从每个模块本身读取，所以，给每个模块加上属性 使得每个算法和函数能拿到以下文档属性：名称 sine_wave | 中文名 正弦波 | 文档 md格式写在模块中，和参数列表匹配 | 参数列表 md格式的表格，写参数名、含义、初值。给一个统一的获取方式，从programs下和functions下获得程序列表和函数列表，然后使用程序名和函数名可以获得该模块的各种文档信息。然后要求每次有新的算法和函数进来时，必须编写该部分内容
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **文档属性要求**：
+    - 每个算法需要定义：name（英文名称，小写下划线格式）、chinese_name（中文名称）、doc（markdown格式的详细文档）、params_table（markdown格式的参数表格）
+    - 每个函数需要定义：name、chinese_name、doc、params_table（通过 `__doc_metadata__` 属性）
+  - **统一获取接口**：
+    - 创建 `utils/doc_helper.py` 模块
+    - 提供 `DocHelper` 类，包含：
+      - `get_program_list()`: 获取所有程序列表
+      - `get_function_list()`: 获取所有函数列表
+      - `get_program_doc(program_name)`: 获取指定程序的文档信息
+      - `get_function_doc(function_name)`: 获取指定函数的文档信息
+      - `get_all_program_docs()`: 获取所有程序的文档信息
+      - `get_all_function_docs()`: 获取所有函数的文档信息
+  - **实现要求**：
+    - 在 `BaseProgram` 中添加文档属性定义
+    - 为所有现有算法添加文档属性
+    - 为所有函数添加文档元数据
+    - 要求每次新增算法或函数时，必须编写文档属性
+
+- **4. Cursor 本次交互后的操作概述**
+  - **修改 `programs/base.py`**：
+    - 在 `BaseProgram` 类中添加文档属性定义：
+      - `name`: 英文名称（小写下划线格式）
+      - `chinese_name`: 中文名称
+      - `doc`: 详细文档（markdown格式字符串）
+      - `params_table`: 参数列表表格（markdown格式字符串）
+    - 添加注释说明文档属性的用途和要求
+  - **为所有算法添加文档属性**：
+    - `programs/sine_wave.py`: 添加完整的文档属性
+    - `programs/pid.py`: 添加完整的文档属性
+    - `programs/square_wave.py`: 添加完整的文档属性
+    - `programs/triangle_wave.py`: 添加完整的文档属性
+    - `programs/list_wave.py`: 添加完整的文档属性
+    - `programs/random.py`: 添加完整的文档属性
+    - `programs/cylindrical_tank.py`: 添加完整的文档属性
+    - `programs/valve.py`: 添加完整的文档属性
+  - **为函数添加文档元数据支持**：
+    - 修改 `functions/math_functions.py`：为 `abs_func` 和 `sqrt_func` 添加 `__doc_metadata__` 属性
+    - 创建 `functions/function_docs.py`：为标准数学函数提供文档元数据字典
+    - 修改 `functions/__init__.py`：在注册函数时附加文档元数据
+  - **创建统一的文档获取接口**：
+    - 创建 `utils/doc_helper.py` 模块：
+      - 定义 `ProgramDocInfo` 和 `FunctionDocInfo` 类
+      - 实现 `DocHelper` 类，提供统一的文档获取接口
+      - 支持从 `InstanceRegistry` 获取程序列表和函数列表
+      - 支持通过程序名/函数名获取文档信息
+      - 提供 `to_dict()` 方法，便于JSON序列化
+  - **文档内容**：
+    - 每个算法的文档包含：功能说明、特点、使用示例
+    - 参数表格包含：参数名、含义、初值
+    - 每个函数的文档包含：功能说明、使用示例
+    - 参数表格包含：参数名、含义、类型
+  - **验证**：
+    - 代码通过语法检查，无linter错误
+    - 所有算法和函数都已添加文档属性
+    - 文档获取接口已实现并可用
+
+---
+
+## 2025-12-08（创建精简的debug模块）
+
+- **1. 当前时间**
+  - 2025-12-08（具体时间以实际执行为准）
+
+- **2. 我的原始需求**
+  - 同样的，写一个debug模块，运行@dsl_demo1.yaml，REALTIME模式，然后再写一个debug模块，把OPCUAServer开起来。这两个启动模块尽可能精简。
+
+- **3. Cursor 理解、拆分、结构化后的需求**
+  - **需求分析**：
+    - 创建两个精简的debug模块
+    - 第一个模块：运行 dsl_demo1.yaml，使用 REALTIME 模式
+    - 第二个模块：启动 OPCUA Server
+    - 要求尽可能精简，只包含必要的代码
+  - **实现方案**：
+    - `debug_realtime.py`：解析配置文件 -> 创建引擎 -> 调用 run_realtime()
+    - `debug_opcua.py`：创建配置 -> 创建 Server -> 启动并保持运行
+
+- **4. Cursor 本次交互后的操作概述**
+  - **创建 `debug_realtime.py`**：
+    - 导入必要的模块（programs、functions、DSLParser、UnifiedEngine）
+    - 解析 `config/dsl_demo1.yaml` 配置文件
+    - 创建引擎并调用 `run_realtime()` 方法
+    - 处理 KeyboardInterrupt 异常，优雅退出
+    - 代码精简，只包含必要的逻辑
+  - **创建 `debug_opcua.py`**：
+    - 导入必要的模块（OPCUAServer、OPCUAServerConfig）
+    - 创建默认配置（server_url、redis连接等）
+    - 创建 OPCUA Server 并启动
+    - 注册信号处理，支持优雅退出
+    - 保持运行直到用户中断
+    - 代码精简，只包含必要的逻辑
+  - **特点**：
+    - 两个模块都非常精简，只包含核心功能
+    - 使用函数参数方式传参（符合项目规范）
+    - 在 `__main__` 中直接调用函数
+    - 包含必要的日志输出和异常处理
+  - **验证**：
+    - 代码通过语法检查，无linter错误
+    - 代码符合项目规范（函数参数传参、详细注释）
+
+---
 

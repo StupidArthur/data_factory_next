@@ -1,0 +1,32 @@
+2025-12-08 14:58:59,425 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-08 14:58:59,425 - INFO - UnifiedEngine initialized: 2 expression nodes
+2025-12-08 14:58:59,426 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
+2025-12-08 14:58:59,426 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-08 14:58:59,427 - ERROR - 节点执行失败: node=non_sense_4, error=表达式类型错误: sin(non_sense_3, 3600, 0), 错误: math.sin() takes exactly one argument (3 given)
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\core\expression.py", line 101, in evaluate
+    value = eval(compiled, {"__builtins__": {}}, env)
+  File "<expression>", line 1, in <module>
+TypeError: math.sin() takes exactly one argument (3 given)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\core\engine.py", line 387, in _step_once
+    node.step(self.vars)
+    ~~~~~~~~~^^^^^^^^^^^
+  File "F:\gitee\data_factory_next\core\expression.py", line 610, in step
+    value = evaluator.evaluate(expr_str)
+  File "F:\gitee\data_factory_next\core\expression.py", line 109, in evaluate
+    raise ExpressionError(f"表达式类型错误: {expression}, 错误: {exc}") from exc
+core.expression.ExpressionError: 表达式类型错误: sin(non_sense_3, 3600, 0), 错误: math.sin() takes exactly one argument (3 given)
+2025-12-08 14:58:59,466 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
+2025-12-08 15:01:25,479 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-08 15:01:25,479 - INFO - UnifiedEngine initialized: 2 expression nodes
+2025-12-08 15:01:25,479 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
+2025-12-08 15:01:25,479 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-08 15:01:29,078 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
+2025-12-08 15:01:29,168 - INFO - TemplateManager initialized: templates_dir=F:\gitee\data_factory_next\export_templates\templates
+2025-12-08 15:01:29,168 - INFO - 模板加载成功: name=pid_loop_tuning, header_rows=1
+2025-12-08 15:01:29,168 - INFO - CSVExporter initialized: template=pid_loop_tuning, header_rows=1, sample_interval=0.500
+2025-12-08 15:01:29,290 - INFO - CSV 导出成功: 文件=F:\gitee\data_factory_next\output\dsl_demo1_output.csv, 行数=10001, 列数=37

@@ -21,8 +21,46 @@ class CYLINDRICAL_TANK(BaseProgram):
     - 出水的流量与当前水位高度相关（根据托里拆利定律）
     """
 
+    # 文档属性（用于网页展示）
+    name = "cylindrical_tank"
+    chinese_name = "圆柱水箱"
+    doc = """
+# 圆柱体水箱模型
+
+基于托里拆利定律实现液位动态计算。
+
+## 物理模型
+
+- 一个圆柱体的水箱
+- 在水箱最高同高的地方有一个圆形的入水管口，由一个阀门（0~100%）控制
+- 在水箱最低的地方有一个圆形的出水口，一直在出水
+- 出水的流量与当前水位高度相关（根据托里拆利定律：v = sqrt(2gh)）
+
+## 使用示例
+
+```yaml
+- name: tank1
+  type: CYLINDRICAL_TANK
+  init_args:
+    height: 10.0
+    radius: 1.0
+    initial_level: 0.0
+  expression: tank1.execute(valve_opening=valve1.current_opening)
+```
+"""
+    params_table = """
+| 参数名 | 含义 | 初值 |
+|--------|------|------|
+| height | 水箱高度（米） | 2.0 |
+| radius | 水箱半径（米） | 0.5 |
+| inlet_area | 入水管面积（平方米） | 0.06 |
+| inlet_velocity | 入水口水流速（米/秒） | 3.0 |
+| outlet_area | 出水口面积（平方米） | 0.001 |
+| initial_level | 初始水位（米） | 0.0 |
+"""
+
     # 需要存储的属性
-    stored_attributes = ["level"]
+    stored_attributes = ["level", "height", "radius", "inlet_area", "inlet_velocity", "outlet_area", "initial_level", "valve_opening"]
 
     # 重力加速度（米/秒²）
     GRAVITY = 9.81

@@ -18,8 +18,44 @@ class VALVE(BaseProgram):
     - 移动速度由 full_travel_time 控制（满行程时间）
     """
 
+    # 文档属性（用于网页展示）
+    name = "valve"
+    chinese_name = "阀门"
+    doc = """
+# 阀门模型
+
+模拟阀门的开度变化（有延迟，不能瞬间到达目标开度）。
+
+## 特点
+
+- 有目标开度（target_opening）和当前开度（current_opening）
+- 当前开度会逐渐向目标开度移动（有延迟）
+- 移动速度由 full_travel_time 控制（满行程时间）
+
+## 使用示例
+
+```yaml
+- name: valve1
+  type: VALVE
+  init_args:
+    min_opening: 0.0
+    max_opening: 100.0
+    full_travel_time: 10.0
+    initial_opening: 0.0
+  expression: valve1.execute(target_opening=pid1.mv)
+```
+"""
+    params_table = """
+| 参数名 | 含义 | 初值 |
+|--------|------|------|
+| min_opening | 最小开度（%） | 0.0 |
+| max_opening | 最大开度（%） | 100.0 |
+| full_travel_time | 满行程时间（秒），从最小到最大开度所需时间 | 10.0 |
+| initial_opening | 初始开度（%） | 0.0 |
+"""
+
     # 需要存储的属性
-    stored_attributes = ["current_opening"]
+    stored_attributes = ["current_opening", "min_opening", "max_opening", "full_travel_time", "initial_opening", "target_opening"]
 
     # 默认参数
     default_params = {

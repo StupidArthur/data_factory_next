@@ -21,13 +21,27 @@ class BaseProgram:
     - execute() 更新内部状态（例如 PID 的积分项），并更新自身属性（如 mv、pv 等）。
     - 需要对外存储的属性通过 stored_attributes 声明，供上层引擎写入 VariableStore。
     - 程序内部如果需要自己的历史数据（与 VariableStore 独立），使用 _internal_history。
+    
+    文档属性（用于网页展示）：
+    - name: 英文名称（小写下划线格式，如 "sine_wave"）
+    - chinese_name: 中文名称（如 "正弦波"）
+    - doc: 详细文档（markdown格式字符串）
+    - params_table: 参数列表（markdown格式的表格字符串，包含参数名、含义、初值）
+    
+    注意：每个子类必须定义这些文档属性，否则无法在网页上正确展示。
     """
 
     #: 需要对外存储的属性名列表（例如 ["mv", "pv", "sv"]）
     stored_attributes: List[str] = []
 
-    #: 默认参数，供子类覆盖，例如 {"kp": 12.0, "ti": 30.0, ...}
+    #: 默认参数，供子类覆盖，例如 {"pb": 12.0, "ti": 30.0, ...}
     default_params: Dict[str, Any] = {}
+    
+    #: 文档属性（用于网页展示）
+    name: str = ""  # 英文名称（小写下划线格式）
+    chinese_name: str = ""  # 中文名称
+    doc: str = ""  # 详细文档（markdown格式）
+    params_table: str = ""  # 参数列表表格（markdown格式）
 
     def __init__(self, cycle_time: float, **kwargs: Any) -> None:
         """

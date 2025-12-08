@@ -623,7 +623,7 @@ result = vars_store.get("result")  # 7.0
 from data_next.core.expression import AlgorithmNode
 
 # 创建算法实例
-pid = PID(kp=1.0, ki=0.1, kd=0.01)
+pid = PID(pb=1.0, ti=30.0, td=0.15)
 
 # 创建算法节点
 node = AlgorithmNode(

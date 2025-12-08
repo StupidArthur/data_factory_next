@@ -1,340 +1,85 @@
-2025-12-05 11:15:14,323 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:15:24,254 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:15:24,254 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:15:24,254 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:15:24,271 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-05 11:15:33,027 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:15:33,029 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:15:33,029 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:15:33,029 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-05 11:15:52,530 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:15:52,530 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:15:52,531 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:15:52,531 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:04,756 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:16:04,756 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:16:04,757 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:04,757 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:15,024 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:16:15,024 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:16:15,025 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:15,026 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:23,405 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:16:23,405 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:16:23,405 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:23,406 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:34,395 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:16:34,396 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:16:34,396 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:16:34,400 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 11:17:13,684 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:17:13,685 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:17:13,685 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:17:13,688 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 11:26:09,193 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 11:26:09,194 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 11:26:09,194 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 11:26:09,206 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 20:29:28,424 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:29:28,424 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 20:29:28,424 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:29:28,427 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 20:29:37,099 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:29:37,099 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 20:29:37,099 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:29:37,111 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 20:36:21,841 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:36:21,842 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 20:36:48,977 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:40:35,272 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:40:35,272 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 20:40:35,272 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:40:35,275 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 20:45:56,488 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:45:56,488 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 20:45:56,489 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:45:56,493 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 20:48:52,573 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:48:52,573 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=10
-2025-12-05 20:48:52,573 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:48:52,578 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 20:49:28,308 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 20:49:28,309 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
-2025-12-05 20:49:28,309 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 20:49:28,314 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-05 21:18:37,988 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 21:18:37,988 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
-2025-12-05 21:18:37,988 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 21:18:38,157 - INFO - Clock stopped: cycle_count=1000, sim_time=500.000
-2025-12-05 21:18:44,287 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 21:18:44,288 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
-2025-12-05 21:18:44,288 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 21:18:56,775 - INFO - Clock stopped: cycle_count=93824, sim_time=46912.000
-2025-12-05 21:19:01,230 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 21:19:01,230 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
-2025-12-05 21:19:01,230 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 21:19:02,592 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-05 21:19:17,713 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-05 21:19:17,713 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
-2025-12-05 21:19:17,713 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-05 21:19:18,981 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 13:36:33,990 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 13:36:33,990 - INFO - UnifiedEngine initialized: 1 expression nodes, max_lag_steps=45
-2025-12-06 13:36:33,990 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 13:36:35,667 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 14:00:52,095 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:00:52,096 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:01:19,319 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:01:19,319 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:02:41,879 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:02:41,879 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:03:20,918 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:03:20,919 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:03:31,155 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:03:31,156 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:03:45,487 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:03:45,487 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:04:39,869 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:04:39,870 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:05:31,343 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:05:31,343 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:05:40,987 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:05:40,987 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 14:06:02,797 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:06:02,797 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 14:06:02,797 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:06:02,797 - INFO - Clock stopped: cycle_count=10, sim_time=5.000
-2025-12-06 14:06:10,954 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:06:10,954 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 14:06:18,297 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:06:18,298 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:06:18,298 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:06:19,754 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 14:06:33,858 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:06:33,858 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:06:33,858 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:06:35,413 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 14:18:41,470 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:18:41,470 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:18:41,471 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
-2025-12-06 14:18:41,471 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:18:43,043 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 14:19:23,614 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:19:23,614 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 14:19:23,614 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 5 个周期
-2025-12-06 14:19:23,614 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:19:23,615 - INFO - Clock stopped: cycle_count=5, sim_time=2.500
-2025-12-06 14:19:32,035 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:19:32,035 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 14:19:32,036 - INFO - 切换到 REALTIME 模式（实时运行）
-2025-12-06 14:19:32,036 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:19:32,538 - INFO - Clock stopped: cycle_count=1, sim_time=0.500
-2025-12-06 14:27:37,089 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:27:37,089 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:27:37,090 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
-2025-12-06 14:27:37,090 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:27:38,561 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 14:28:15,413 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:28:15,413 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 14:35:10,745 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:35:10,745 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 14:35:10,745 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10000 个周期
-2025-12-06 14:35:10,746 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 14:35:12,205 - INFO - Clock stopped: cycle_count=10000, sim_time=5000.000
-2025-12-06 14:35:24,020 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 14:35:24,020 - INFO - UnifiedEngine initialized: 0 expression nodes
-2025-12-06 15:23:12,010 - INFO - Database table and indexes created
-2025-12-06 15:23:12,010 - INFO - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
-2025-12-06 15:23:12,720 - INFO - Database connection closed
-2025-12-06 15:23:12,726 - INFO - Redis connection established
-2025-12-06 15:23:12,726 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 15:23:12,727 - INFO - Redis connection closed
-2025-12-06 15:23:34,858 - INFO - Database table and indexes created
-2025-12-06 15:23:34,858 - INFO - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
-2025-12-06 15:23:35,249 - INFO - Database connection closed
-2025-12-06 15:23:35,256 - INFO - Redis connection established
-2025-12-06 15:23:35,256 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 15:23:35,257 - INFO - Redis connection closed
-2025-12-06 15:23:46,961 - INFO - Database table and indexes created
-2025-12-06 15:23:46,961 - INFO - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
-2025-12-06 15:23:47,354 - INFO - Database connection closed
-2025-12-06 15:23:47,360 - INFO - Redis connection established
-2025-12-06 15:23:47,361 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 15:23:47,361 - INFO - Redis connection closed
-2025-12-06 15:23:47,364 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 15:23:47,364 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 15:23:47,450 - INFO - Database table and indexes created
-2025-12-06 15:23:47,450 - INFO - HistoryStorage initialized: db_path=test_engine_history.duckdb, stored_variables=all
-2025-12-06 15:23:47,450 - INFO - 历史数据存储已启用
-2025-12-06 15:23:47,452 - INFO - Redis connection established
-2025-12-06 15:23:47,452 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 15:23:47,452 - INFO - 实时数据管理已启用
-2025-12-06 15:23:47,452 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
-2025-12-06 15:23:47,452 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 15:23:47,454 - INFO - Clock stopped: cycle_count=10, sim_time=5.000
-2025-12-06 15:23:47,499 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 15:23:47,499 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 15:23:47,585 - INFO - Database table and indexes created
-2025-12-06 15:23:47,585 - INFO - HistoryStorage initialized: db_path=test_realtime_history.duckdb, stored_variables=all
-2025-12-06 15:23:47,585 - INFO - 历史数据存储已启用
-2025-12-06 15:23:47,587 - INFO - Redis connection established
-2025-12-06 15:23:47,587 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 15:23:47,587 - INFO - 实时数据管理已启用
-2025-12-06 15:23:47,587 - INFO - 切换到 REALTIME 模式（实时运行）
-2025-12-06 15:23:47,587 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 15:23:50,090 - INFO - Clock stopped: cycle_count=5, sim_time=2.500
-2025-12-06 15:23:50,090 - INFO - Redis connection closed
-2025-12-06 15:23:50,763 - INFO - Database connection closed
-2025-12-06 15:23:50,764 - ERROR - Failed to query history: Connection Error: Connection already closed!
-Traceback (most recent call last):
-  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
-    result = self._conn.execute(sql, params).fetchall()
-             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-_duckdb.ConnectionException: Connection Error: Connection already closed!
-2025-12-06 15:24:31,177 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 15:24:31,177 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 15:24:31,282 - INFO - Database table and indexes created
-2025-12-06 15:24:31,282 - INFO - HistoryStorage initialized: db_path=test_detailed_history.duckdb, stored_variables=all
-2025-12-06 15:24:31,282 - INFO - 历史数据存储已启用
-2025-12-06 15:24:31,282 - INFO - 切换到 REALTIME 模式（实时运行）
-2025-12-06 15:24:31,282 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 15:24:43,610 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-06 15:24:43,665 - INFO - Database connection closed
-2025-12-06 15:24:43,665 - ERROR - Failed to query history: Connection Error: Connection already closed!
-Traceback (most recent call last):
-  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
-    result = self._conn.execute(sql, params).fetchall()
-             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-_duckdb.ConnectionException: Connection Error: Connection already closed!
-2025-12-06 15:24:43,667 - ERROR - Failed to query sampled: Connection Error: Connection already closed!
-Traceback (most recent call last):
-  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 365, in query_sampled
-    all_timestamps = self._conn.execute(sql, params).fetchall()
-                     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-_duckdb.ConnectionException: Connection Error: Connection already closed!
-2025-12-06 15:25:35,133 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 15:25:35,134 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 15:25:35,265 - INFO - Database table and indexes created
-2025-12-06 15:25:35,265 - INFO - HistoryStorage initialized: db_path=test_quick_history.duckdb, stored_variables=all
-2025-12-06 15:25:35,265 - INFO - 历史数据存储已启用
-2025-12-06 15:25:35,265 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 15:25:36,858 - INFO - Clock stopped: cycle_count=20, sim_time=10.000
-2025-12-06 15:25:36,922 - INFO - Database connection closed
-2025-12-06 16:14:51,083 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:14:51,084 - INFO - UnifiedEngine initialized: 2 expression nodes
-2025-12-06 16:14:51,084 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
-2025-12-06 16:14:51,085 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:14:51,085 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-06 16:15:05,131 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:15:05,131 - INFO - UnifiedEngine initialized: 2 expression nodes
-2025-12-06 16:15:05,132 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
-2025-12-06 16:15:05,132 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:15:05,133 - INFO - Clock stopped: cycle_count=0, sim_time=0.000
-2025-12-06 16:15:15,478 - INFO - Database table and indexes created
-2025-12-06 16:15:15,478 - INFO - HistoryStorage initialized: db_path=test_history.duckdb, stored_variables=all
-2025-12-06 16:15:15,856 - INFO - Database connection closed
-2025-12-06 16:15:15,862 - INFO - Redis connection established
-2025-12-06 16:15:15,862 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:15:15,862 - INFO - Redis connection closed
-2025-12-06 16:15:15,864 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:15:15,864 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 16:15:15,875 - INFO - Database table and indexes created
-2025-12-06 16:15:15,875 - INFO - HistoryStorage initialized: db_path=test_engine_history.duckdb, stored_variables=all
-2025-12-06 16:15:15,875 - INFO - 历史数据存储已启用
-2025-12-06 16:15:15,876 - INFO - Redis connection established
-2025-12-06 16:15:15,876 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:15:15,876 - INFO - 实时数据管理已启用
-2025-12-06 16:15:15,876 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
-2025-12-06 16:15:15,876 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:15:15,878 - INFO - Clock stopped: cycle_count=10, sim_time=5.000
-2025-12-06 16:15:15,883 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:15:15,883 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 16:15:15,894 - INFO - Database table and indexes created
-2025-12-06 16:15:15,894 - INFO - HistoryStorage initialized: db_path=test_realtime_history.duckdb, stored_variables=all
-2025-12-06 16:15:15,894 - INFO - 历史数据存储已启用
-2025-12-06 16:15:15,895 - INFO - Redis connection established
-2025-12-06 16:15:15,895 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:15:15,895 - INFO - 实时数据管理已启用
-2025-12-06 16:15:15,895 - INFO - 切换到 REALTIME 模式（实时运行）
-2025-12-06 16:15:15,895 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:15:18,399 - INFO - Clock stopped: cycle_count=5, sim_time=2.500
-2025-12-06 16:15:18,399 - INFO - Redis connection closed
-2025-12-06 16:15:18,794 - INFO - Database connection closed
-2025-12-06 16:15:18,795 - ERROR - Failed to query history: Connection Error: Connection already closed!
-Traceback (most recent call last):
-  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
-    result = self._conn.execute(sql, params).fetchall()
-             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-_duckdb.ConnectionException: Connection Error: Connection already closed!
-2025-12-06 16:16:02,795 - INFO - Database table and indexes created
-2025-12-06 16:16:02,795 - INFO - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_history.duckdb, stored_variables=all
-2025-12-06 16:16:03,171 - INFO - Database connection closed
-2025-12-06 16:16:03,177 - INFO - Redis connection established
-2025-12-06 16:16:03,177 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:16:03,178 - INFO - Redis connection closed
-2025-12-06 16:16:03,180 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:16:03,180 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 16:16:03,190 - INFO - Database table and indexes created
-2025-12-06 16:16:03,190 - INFO - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_engine_history.duckdb, stored_variables=all
-2025-12-06 16:16:03,190 - INFO - 历史数据存储已启用
-2025-12-06 16:16:03,192 - INFO - Redis connection established
-2025-12-06 16:16:03,192 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:16:03,192 - INFO - 实时数据管理已启用
-2025-12-06 16:16:03,192 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
-2025-12-06 16:16:03,192 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:16:03,194 - INFO - Clock stopped: cycle_count=10, sim_time=5.000
-2025-12-06 16:16:03,198 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:16:03,198 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 16:16:03,209 - INFO - Database table and indexes created
-2025-12-06 16:16:03,209 - INFO - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_realtime_history.duckdb, stored_variables=all
-2025-12-06 16:16:03,209 - INFO - 历史数据存储已启用
-2025-12-06 16:16:03,210 - INFO - Redis connection established
-2025-12-06 16:16:03,210 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:16:03,210 - INFO - 实时数据管理已启用
-2025-12-06 16:16:03,210 - INFO - 切换到 REALTIME 模式（实时运行）
-2025-12-06 16:16:03,210 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:16:05,713 - INFO - Clock stopped: cycle_count=5, sim_time=2.500
-2025-12-06 16:16:05,713 - INFO - Redis connection closed
-2025-12-06 16:16:06,134 - INFO - Database connection closed
-2025-12-06 16:16:06,134 - ERROR - Failed to query history: Connection Error: Connection already closed!
-Traceback (most recent call last):
-  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
-    result = self._conn.execute(sql, params).fetchall()
-             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-_duckdb.ConnectionException: Connection Error: Connection already closed!
-2025-12-06 16:16:57,038 - INFO - Database table and indexes created
-2025-12-06 16:16:57,038 - INFO - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_history.duckdb, stored_variables=all
-2025-12-06 16:16:57,470 - INFO - Database connection closed
-2025-12-06 16:16:57,477 - INFO - Redis connection established
-2025-12-06 16:16:57,477 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:16:57,477 - INFO - Redis connection closed
-2025-12-06 16:16:57,480 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:16:57,480 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 16:16:57,492 - INFO - Database table and indexes created
-2025-12-06 16:16:57,492 - INFO - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_engine_history.duckdb, stored_variables=all
-2025-12-06 16:16:57,492 - INFO - 历史数据存储已启用
-2025-12-06 16:16:57,494 - INFO - Redis connection established
-2025-12-06 16:16:57,494 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:16:57,494 - INFO - 实时数据管理已启用
-2025-12-06 16:16:57,494 - INFO - 切换到 GENERATOR 模式（快速批量生成），执行 10 个周期
-2025-12-06 16:16:57,494 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:16:57,496 - INFO - Clock stopped: cycle_count=10, sim_time=5.000
-2025-12-06 16:16:57,501 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
-2025-12-06 16:16:57,501 - INFO - UnifiedEngine initialized: 1 expression nodes
-2025-12-06 16:16:57,513 - INFO - Database table and indexes created
-2025-12-06 16:16:57,513 - INFO - HistoryStorage initialized: db_path=F:\gitee\data_factory_next\tests\test_realtime_history.duckdb, stored_variables=all
-2025-12-06 16:16:57,513 - INFO - 历史数据存储已启用
-2025-12-06 16:16:57,514 - INFO - Redis connection established
-2025-12-06 16:16:57,514 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
-2025-12-06 16:16:57,515 - INFO - 实时数据管理已启用
-2025-12-06 16:16:57,515 - INFO - 切换到 REALTIME 模式（实时运行）
-2025-12-06 16:16:57,515 - INFO - Clock started: cycle_count=0, sim_time=0.000
-2025-12-06 16:17:00,017 - INFO - Clock stopped: cycle_count=5, sim_time=2.500
-2025-12-06 16:17:00,017 - INFO - Redis connection closed
-2025-12-06 16:17:00,428 - INFO - Database connection closed
-2025-12-06 16:17:00,429 - ERROR - Failed to query history: Connection Error: Connection already closed!
-Traceback (most recent call last):
-  File "F:\gitee\data_factory_next\data_manager\history_storage.py", line 280, in query_history
-    result = self._conn.execute(sql, params).fetchall()
-             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-_duckdb.ConnectionException: Connection Error: Connection already closed!
+2025-12-08 19:21:15,950 - INFO - Snapshot pushed to Redis: cycle_count=420, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:20,955 - INFO - Snapshot pushed to Redis: cycle_count=430, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:25,961 - INFO - Snapshot pushed to Redis: cycle_count=440, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:30,967 - INFO - Snapshot pushed to Redis: cycle_count=450, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:35,974 - INFO - Snapshot pushed to Redis: cycle_count=460, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:40,979 - INFO - Snapshot pushed to Redis: cycle_count=470, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:45,985 - INFO - Snapshot pushed to Redis: cycle_count=480, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:50,990 - INFO - Snapshot pushed to Redis: cycle_count=490, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:21:55,995 - INFO - Snapshot pushed to Redis: cycle_count=500, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:01,000 - INFO - Snapshot pushed to Redis: cycle_count=510, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:06,007 - INFO - Snapshot pushed to Redis: cycle_count=520, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:11,012 - INFO - Snapshot pushed to Redis: cycle_count=530, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:16,018 - INFO - Snapshot pushed to Redis: cycle_count=540, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:21,023 - INFO - Snapshot pushed to Redis: cycle_count=550, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:26,028 - INFO - Snapshot pushed to Redis: cycle_count=560, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:31,034 - INFO - Snapshot pushed to Redis: cycle_count=570, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:36,040 - INFO - Snapshot pushed to Redis: cycle_count=580, params_count=36, sample_params=['pid1.mv', 'pid1.pv', 'pid1.sv', 'pid1.pb', 'pid1.ti', 'pid1.td', 'pid1.h', 'pid1.l', 'sin1.amplitude', 'sin1.period']
+2025-12-08 19:22:37,211 - INFO - Clock stopped: cycle_count=582, sim_time=291.000
+2025-12-08 19:22:37,211 - INFO - Redis connection closed
+2025-12-08 19:22:37,211 - INFO - 用户中断，停止运行
+2025-12-08 19:23:30,231 - INFO - 解析配置文件: F:\gitee\data_factory_next\config\dsl_demo1.yaml
+2025-12-08 19:23:30,234 - INFO - Clock initialized: cycle_time=0.500, mode=GENERATOR, start_time=0.000, sample_interval=None (every 1 cycles), time_format=None
+2025-12-08 19:23:30,234 - INFO - UnifiedEngine initialized: 2 expression nodes
+2025-12-08 19:23:30,241 - INFO - Redis connection established
+2025-12-08 19:23:30,241 - INFO - RealtimeDataManager initialized: redis=localhost:6379/0, channel=data_factory
+2025-12-08 19:23:30,241 - INFO - 实时数据管理已启用
+2025-12-08 19:23:30,241 - INFO - 实时数据管理已启用（推送到 Redis）
+2025-12-08 19:23:30,241 - INFO - 引擎创建成功，开始实时运行（按 Ctrl+C 停止）
+2025-12-08 19:23:30,241 - INFO - 切换到 REALTIME 模式（实时运行）
+2025-12-08 19:23:30,241 - INFO - Clock started: cycle_count=0, sim_time=0.000
+2025-12-08 19:23:34,965 - INFO - Redis connection established in OPCUA Server
+2025-12-08 19:23:34,965 - INFO - OPCUA Server initialized: server_url=opc.tcp://0.0.0.0:18953, redis=localhost:6379/0, channel=data_factory
+2025-12-08 19:23:34,966 - INFO - ============================================================
+2025-12-08 19:23:34,966 - INFO - 启动 OPCUA Server
+2025-12-08 19:23:34,966 - INFO - Server URL: opc.tcp://0.0.0.0:18953
+2025-12-08 19:23:34,966 - INFO - Redis: localhost:6379/0
+2025-12-08 19:23:34,966 - INFO - ============================================================
+2025-12-08 19:23:34,966 - INFO - OPCUA Server started in background thread
+2025-12-08 19:23:34,966 - INFO - OPCUA Server 运行中，按 Ctrl+C 停止
+2025-12-08 19:23:35,601 - INFO - OPCUA Server namespace registered: http://data_factory.opcua (idx=2)
+2025-12-08 19:23:35,602 - INFO - OPCUA Server initialized
+2025-12-08 19:23:35,602 - INFO - OPCUA Server started at opc.tcp://0.0.0.0:18953
+2025-12-08 19:23:35,602 - INFO - Available endpoints:
+2025-12-08 19:23:35,602 - INFO -   - opc.tcp://0.0.0.0:18953
+2025-12-08 19:23:35,602 - INFO -     Security Policy: http://opcfoundation.org/UA/SecurityPolicy#None
+2025-12-08 19:23:35,602 - INFO -     Security Mode: 1
+2025-12-08 19:23:35,603 - ERROR - Failed to create node pid1.mv: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,604 - ERROR - Failed to create node pid1.pv: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,605 - ERROR - Failed to create node pid1.sv: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,606 - ERROR - Failed to create node pid1.pb: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,608 - ERROR - Failed to create node pid1.ti: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,609 - ERROR - Failed to create node pid1.td: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,610 - ERROR - Failed to create node pid1.h: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,611 - ERROR - Failed to create node pid1.l: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,612 - ERROR - Failed to create node sin1.amplitude: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,613 - ERROR - Failed to create node sin1.period: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,614 - ERROR - Failed to create node sin1.phase: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,615 - ERROR - Failed to create node tank1.level: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,616 - ERROR - Failed to create node tank1.height: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,617 - ERROR - Failed to create node tank1.radius: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,618 - ERROR - Failed to create node tank1.inlet_area: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,619 - ERROR - Failed to create node tank1.inlet_velocity: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,620 - ERROR - Failed to create node tank1.outlet_area: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,621 - ERROR - Failed to create node tank1.initial_level: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,622 - ERROR - Failed to create node tank1.valve_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,623 - ERROR - Failed to create node valve1.current_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,624 - ERROR - Failed to create node valve1.min_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,625 - ERROR - Failed to create node valve1.max_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,626 - ERROR - Failed to create node valve1.full_travel_time: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,627 - ERROR - Failed to create node valve1.initial_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,628 - ERROR - Failed to create node valve1.target_opening: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,629 - ERROR - Failed to create node non_sense_1.out: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,630 - ERROR - Failed to create node non_sense_1.L: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,632 - ERROR - Failed to create node non_sense_1.H: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,633 - ERROR - Failed to create node non_sense_1.max_step: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,634 - ERROR - Failed to create node non_sense_2.out: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,635 - ERROR - Failed to create node non_sense_2.L: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,636 - ERROR - Failed to create node non_sense_2.H: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,637 - ERROR - Failed to create node non_sense_2.max_step: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,638 - ERROR - Failed to create node sin1.out: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,639 - ERROR - Failed to create node non_sense_3: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,640 - ERROR - Failed to create node non_sense_4: 'Node' object has no attribute 'set_display_name'
+2025-12-08 19:23:35,641 - INFO - Subscribed to Redis Pub/Sub channel: data_factory
+2025-12-08 19:24:55,632 - WARNING - Cycle execution time (0.304s) exceeds 60% of cycle_time (0.500s * 0.6 = 0.300s), cycle_count=170, execution_time=0.304s, cycle_time=0.500s
+2025-12-08 19:31:50,776 - INFO - Snapshot pushed to Redis: cycle_count=1000, params_count=36

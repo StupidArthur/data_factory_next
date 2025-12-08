@@ -1,0 +1,18 @@
+2025-12-08 14:58:59,427 - ERROR - engine.py:389 - 节点执行失败: node=non_sense_4, error=表达式类型错误: sin(non_sense_3, 3600, 0), 错误: math.sin() takes exactly one argument (3 given)
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\core\expression.py", line 101, in evaluate
+    value = eval(compiled, {"__builtins__": {}}, env)
+  File "<expression>", line 1, in <module>
+TypeError: math.sin() takes exactly one argument (3 given)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "F:\gitee\data_factory_next\core\engine.py", line 387, in _step_once
+    node.step(self.vars)
+    ~~~~~~~~~^^^^^^^^^^^
+  File "F:\gitee\data_factory_next\core\expression.py", line 610, in step
+    value = evaluator.evaluate(expr_str)
+  File "F:\gitee\data_factory_next\core\expression.py", line 109, in evaluate
+    raise ExpressionError(f"表达式类型错误: {expression}, 错误: {exc}") from exc
+core.expression.ExpressionError: 表达式类型错误: sin(non_sense_3, 3600, 0), 错误: math.sin() takes exactly one argument (3 given)
